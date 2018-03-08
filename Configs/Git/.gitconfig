@@ -1,0 +1,68 @@
+#Please ensure that sgdm.exe is in the Environment Path
+[merge]
+    tool = diffmerge
+[mergetool "diffmerge"]
+    trustExitCode = true
+    cmd = sgdm --merge --result=$MERGED $REMOTE $BASE $LOCAL --title1=Mine --title2=Merged --title3=Theirs
+[mergetool]
+    keepBackup = false
+[difftool "diffmerge"]
+    cmd = sgdm \"$LOCAL\" \"$REMOTE\"
+[diff]
+    tool = diffmerge
+
+[user]
+	name = Mauro Da Silva	
+	
+[alias]
+	# Obtained from http://haacked.com/archive/2014/07/28/github-flow-aliases/
+	s = status
+    co = checkout
+    ec = config --global -e
+	rh = reset --hard
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	cob = checkout -b
+	c = !git add -A && git commit
+    cm = !git add -A && git commit -m
+    save = !git add -A && git commit -m 'Savepoint'
+    undo = reset HEAD~1 --mixed
+    amend = commit -a --amend
+    wipe = !git add -A && git commit -qm 'Wipe Savepoint' && git reset HEAD~1 --hard
+    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+	sync = !git up && git push
+	mi = "!f(){ git rebase -i HEAD~\"$1\"; };f"
+	# branch-name	required	Name of the new branch.
+	# target-branch	  optional	Defaults to “master”. The branch that the new branch is created off of.
+	# commit-range		optional	The commits to migrate. Defaults to the current remote tracking branch.
+	# Eg. git migrate new-branch master HEAD~1 or  git migrate new-branch other-branch
+	migrate = "!f(){ CURRENT=$(git symbolic-ref --short HEAD); git checkout -b $1 && git branch --force $CURRENT ${3-'$CURRENT@{u}'} && git rebase --onto ${2-master} $CURRENT; }; f" 
+
+	
+	# Obtained from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	grep = grep -Ii
+	find = "!git ls-files | grep -i"
+	lt = describe --tags --abbrev=0
+	la = "!git config -l | grep alias | cut -c 7-"
+	
+	# Custom
+    mt = mergetool
+	dt = difftool
+	lf = log --name-status
+	cleanup = clean -fdx
+	
+[color "status"]		
+	changed = blue normal bold
+	added = green normal bold
+	untracked = red normal bold
+	modified = blue normal bold
+[credential]
+	helper = wincred
+[core]
+	editor = code --wait	
+[advice]
+	statusHints = false
+[push]
+	default = simple

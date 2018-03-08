@@ -1,0 +1,79 @@
+# use glob syntax
+syntax: glob
+
+# Ignore General Files
+*.bak.*
+*.bak
+thumbs.db
+*.msi
+*.log
+*.sqlite
+* - [Cc]opy
+~$*
+
+# Ignore General Directories
+App_Data/*
+[Bb]inaries/
+[Bb]in/
+[Dd]ebug/
+[Ee]xternal/
+[Oo]bj/
+[Rr]elease/
+_ReSharper.*/
+tmp/
+.svn/
+_UpgradeReport_Files
+[Pp]ackages/
+bower_components/
+node_modules/
+.vs/
+
+# Ignore Visual Studio Specific Files
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.scc
+*.*scc
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+*\[Bb]in\*
+*\[Oo]bj\*
+_Resharper.*/
+ignore[.-]*
+svnignore[.-]*
+[Tt]est[Rr]esult*
+[Bb]uild[Ll]og.*
+*.[Pp]ublish.xml
+
+#Azure Specific Files
+*.publishsettings
+azure.err
+
+#Ignore IIS Specific Files
+_vti_txt
+*/_vti_txt
+_vti_script
+*/_vti_script
+_vti_pvt
+*/_vti_pvt
+_vti_cnf
+*/_vti_cnf
+_private
+*/_private
