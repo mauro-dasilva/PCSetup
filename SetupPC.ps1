@@ -37,12 +37,11 @@ Write-Host "    Windows Update Powershell Script" -ForegroundColor Magenta
 Write-Host "Setting up Environment Variables" -ForegroundColor Green
 
     [Environment]::SetEnvironmentVariable('ChocolateyToolsLocation', ${env:ProgramFiles(x86)}, "User")
-    [Environment]::SetEnvironmentVariable('Path',$Env:Path + ";${env:ProgramFiles}\SourceGear\Common\DiffMerge\","User")
+    [Environment]::SetEnvironmentVariable('Path',$Env:Path + ";${env:ProgramFiles}\Beyond Compare 4\","User")
     Update-SessionEnvironment
-
-
+  
 #####################################################################################################################################################################################################
-#                                                   INSTALLING APPLICATIONSa
+#                                                   INSTALLING APPLICATIONS
 #####################################################################################################################################################################################################
 
 # Visual Studio
@@ -126,8 +125,8 @@ Write-Host "Installing Various Apps" -ForegroundColor Green
     choco install paint.net -y | Out-Null
     Write-Host "    Calibre" -ForegroundColor Magenta
     choco install calibre -y | Out-Null
-    Write-Host "    DiffMerge" -ForegroundColor Magenta
-    choco install diffmerge -y | Out-Null
+    Write-Host "    Beyond Compare" -ForegroundColor Magenta
+    choco install beyondcompare -y | Out-Null
     Write-Host "    WhatsApp" -ForegroundColor Magenta
     choco install whatsapp -y | Out-Null
     Write-Host "    Microsoft Teams" -ForegroundColor Magenta
@@ -142,7 +141,7 @@ Write-Host "Installing Various Apps" -ForegroundColor Green
     choco install resharper-platform -y | Out-Null
 
     Update-SessionEnvironment
-    
+
 #####################################################################################################################################################################################################
 #                                                   REMOVING PREINSTALLED APPS
 #####################################################################################################################################################################################################

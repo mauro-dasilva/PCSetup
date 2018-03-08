@@ -1,15 +1,29 @@
 #Please ensure that sgdm.exe is in the Environment Path
 [merge]
-    tool = diffmerge
+    tool = beyondcompare
+[mergetool]
+    prompt = false
+    keepBackup = false
+	
+[diff]
+    tool = beyondcompare
+[difftool]
+    prompt = false
+	
 [mergetool "diffmerge"]
     trustExitCode = true
     cmd = sgdm --merge --result=$MERGED $REMOTE $BASE $LOCAL --title1=Mine --title2=Merged --title3=Theirs
-[mergetool]
-    keepBackup = false
+
+[mergetool "beyondcompare"]
+    trustExitCode = true
+	cmd = BCompare $LOCAL $REMOTE $BASE $MERGED
+	
 [difftool "diffmerge"]
     cmd = sgdm \"$LOCAL\" \"$REMOTE\"
-[diff]
-    tool = diffmerge
+
+[difftool "beyondcompare"]
+    cmd = BCompare \"$LOCAL\" \"$REMOTE\"	
+
 
 [user]
 	name = Mauro Da Silva	
