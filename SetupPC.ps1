@@ -1,6 +1,6 @@
 $OfficeVersion = 16
-$WarningPreference = "Continue"
-$ErrorActionPreference = "Continue"
+$WarningPreference = "SilentlyContinue"
+$ErrorActionPreference = "SilentlyContinue"
 
 Function CreateRegistryKey ($Path)
 {
@@ -37,7 +37,7 @@ Write-Host "    Windows Update Powershell Script" -ForegroundColor Magenta
 Write-Host "Setting up Environment Variables" -ForegroundColor Green
 
     [Environment]::SetEnvironmentVariable('ChocolateyToolsLocation', ${env:ProgramFiles(x86)}, "User")
-    [Environment]::SetEnvironmentVariable('Path',$Env:Path + ";${env:ProgramFiles}\Beyond Compare 4\","User")
+    [Environment]::SetEnvironmentVariable('Path',$Env:Path + ";${env:ProgramFiles}\SourceGear\Common\DiffMerge\","User")
     Update-SessionEnvironment
   
 #####################################################################################################################################################################################################
@@ -50,15 +50,15 @@ Write-Host "Installing Visual Studio" -ForegroundColor Green
 
     #Choose your workloads. More information on workloads can be found at https://www.visualstudio.com/vs/visual-studio-workloads/
     Write-Host "    Installing Azure" -ForegroundColor Magenta
-    choco install visualstudio2017-workload-azure -y | Out-Null
+    choco install visualstudio2017-workload-azure -package-parameters "--wait" -y | Out-Null
     Write-Host "    Installing Data Storage & Processing" -ForegroundColor Magenta
-    choco install visualstudio2017-workload-data -y | Out-Null
+    choco install visualstudio2017-workload-data -package-parameters "--wait" -y | Out-Null
     Write-Host "    Installing .NET Desktop" -ForegroundColor Magenta
-    choco install visualstudio2017-workload-manageddesktop -y | Out-Null
+    choco install visualstudio2017-workload-manageddesktop -package-parameters "--wait" -y | Out-Null
     Write-Host "    Installing .NET Core" -ForegroundColor Magenta
-    choco install visualstudio2017-workload-netcoretools -y | Out-Null
+    choco install visualstudio2017-workload-netcoretools -package-parameters "--wait" -y | Out-Null
     Write-Host "    Installing Web Development" -ForegroundColor Magenta
-    choco install visualstudio2017-workload-netweb -y | Out-Null
+    choco install visualstudio2017-workload-netweb -package-parameters "--wait" -y | Out-Null
 
 #SQL Server Management Studio
 Write-Host "Install SQL Server Management Studio" -ForegroundColor Green
@@ -125,8 +125,8 @@ Write-Host "Installing Various Apps" -ForegroundColor Green
     choco install paint.net -y | Out-Null
     Write-Host "    Calibre" -ForegroundColor Magenta
     choco install calibre -y | Out-Null
-    Write-Host "    Beyond Compare" -ForegroundColor Magenta
-    choco install beyondcompare -y | Out-Null
+    Write-Host "    DiffMerge" -ForegroundColor Magenta
+    choco install diffmerge  -y | Out-Null
     Write-Host "    WhatsApp" -ForegroundColor Magenta
     choco install whatsapp -y | Out-Null
     Write-Host "    Microsoft Teams" -ForegroundColor Magenta
@@ -223,11 +223,11 @@ Write-Host "Removing Preinstalled Windows Apps" -ForegroundColor Green
     foreach ($CurrentAppName in $AppsToRemove) {
         
         Write-Host "    Removing $CurrentAppName" -ForegroundColor Magenta
-        $CurrentAppPackage = Get-AppxPackage -Name $CurrentAppName -AllUsers
-        if ($CurrentAppPackage) {
-            Get-AppxPackage -Name $CurrentAppName -AllUsers | Remove-AppxPackage -AllUsers | Out-Null
-            Get-AppXProvisionedPackage -Online | Where-Object DisplayName -EQ $CurrentAppName | Remove-AppxProvisionedPackage -Online | Out-Null
-        }
+
+        Get-AppxPackage -Name $CurrentAppName -AllUsers | Remove-AppxPackage -AllUsers | Out-Null
+        Get-AppXProvisionedPackage -Online | Where-Object DisplayName -EQ $CurrentAppName | Remove-AppxProvisionedPackage -Online | Out-Null   
+        
+        Start-Sleep -m 100
     }
 
 #####################################################################################################################################################################################################
@@ -405,6 +405,37 @@ Write-Host "Setting Windows Preferences" -ForegroundColor Green
     # Remove "New Journal" From Context Menu   
     Remove-Item -Path "HKCR:\.jnt\jntfile\ShellNew" -Recurse 
 
+    # Remove "New Rich Text Document" From Context Menu   
+    Remove-Item -Path "HKCR:\.rtf\ShellNew" -Recurse    
+
+    # Remove "New Compressed Folder" From Context Menu   
+    Remove-Item -Path "HKCR:\.zip\CompressedFolder\ShellNew" -Recurse    
+
+    # Remove "New Bitmap Image" From Context Menu   
+    Remove-Item -Path "HKCR:\.bmp\ShellNew" -Recurse  
+    
+    # Remove "Modern Share" From Context Menu   
+    Remove-Item -LiteralPath "HKCR:\*\shellex\ContextMenuHandlers\ModernSharing" -Recurse  
+
+    # Remove "New Word Document" From Context Menu   
+    Remove-Item -Path "HKCR:\.docx\Word.Document.12\ShellNew" -Recurse
+
+    # Remove "New Excel Document" From Context Menu   
+    Remove-Item -Path "HKCR:\.xlsx\Excel.Sheet.12\ShellNew" -Recurse
+
+    # Remove "New Publisher Document" From Context Menu   
+    Remove-Item -Path "HKCR:\.pub\Publisher.Document.16\ShellNew" -Recurse
+
+    # Remove "New Access Document" From Context Menu   
+    Remove-Item -Path "HKCR:\.accdb\Access.Application.16\ShellNew" -Recurse
+    Remove-Item -Path "HKCR:\.mdb\ShellNew" -Recurse
+
+    # Remove "New Powerpoint Document" From Context Menu   
+    Remove-Item -Path "HKCR:\.pptx\PowerPoint.Show.12\ShellNew" -Recurse
+
+    # Remove "New Shortcut" From Context Menu   
+    Remove-Item -Path "HKCR:\.lnk\ShellNew" -Recurse    
+        
     # Remove "Open in Visual Studio" From Context Menu   
     Remove-Item -Path "HKCR:\Directory\Background\shell\AnyCode" -Recurse 
     Remove-Item -Path "HKCR:\Directory\shell\AnyCode" -Recurse 
@@ -505,7 +536,15 @@ Write-Host "Setting Windows Preferences" -ForegroundColor Green
 
     # Remove "DiffMerge" From Context Menu
     Remove-Item -LiteralPath "HKCR:\*\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension32" -Recurse 
-    Remove-Item -LiteralPath "HKCR:\*\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension64" -Recurse    
+    Remove-Item -LiteralPath "HKCR:\*\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension64" -Recurse
+    Remove-Item -Path "HKCR:\Directory\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension32" -Recurse
+    Remove-Item -Path "HKCR:\Directory\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension64" -Recurse
+    
+    # Remove "Send To" Links
+    Remove-Item -Path "${env:APPDATA}\Microsoft\Windows\SendTo\Bluetooth File Transfer.LNK"
+    Remove-Item -Path "${env:APPDATA}\Microsoft\Windows\SendTo\Desktop (create shortcut).DeskLink"
+    Remove-Item -Path "${env:APPDATA}\Microsoft\Windows\SendTo\Documents.mydocs"
+    Remove-Item -Path "${env:APPDATA}\Microsoft\Windows\SendTo\Mail Recipient.MAPIMail"
 
     Remove-PSDrive -Name HKCR     
 
@@ -529,9 +568,9 @@ Write-Host "Adding/Removing Windows Features" -ForegroundColor Green
 #####################################################################################################################################################################################################
 Write-Host "Setting up Keyboard Preferences" -ForegroundColor Green
 
-    # $Languages = Get-WinUserLanguageList
-    # $Languages.Add("en-US")
-    # Set-WinUserLanguageList $Languages -Force
+    $Languages = Get-WinUserLanguageList
+    $Languages.Add("en-US")
+    Set-WinUserLanguageList $Languages -Force
 
 #####################################################################################################################################################################################################
 #                                                  DESKTOP SETUP

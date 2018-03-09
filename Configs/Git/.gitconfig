@@ -1,12 +1,12 @@
 #Please ensure that sgdm.exe is in the Environment Path
 [merge]
-    tool = beyondcompare
+    tool = diffmerge
 [mergetool]
     prompt = false
     keepBackup = false
 	
 [diff]
-    tool = beyondcompare
+    tool = diffmerge
 [difftool]
     prompt = false
 	
