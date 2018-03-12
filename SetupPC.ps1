@@ -1,29 +1,28 @@
 $OfficeVersion = 16
 $WarningPreference = "SilentlyContinue"
 $ErrorActionPreference = "Continue"
-$DefaultOutput = 'Out-Null' # To Debug, change this value to 'Out-Default'
 
 #####################################################################################################################################################################################################
 #                                                   PRE-REQUISITES
 #####################################################################################################################################################################################################
 Write-Host "Please Enter Your Desired Computer Name: "
 $ComputerName = Read-Host 
-Rename-Computer -NewName $ComputerName | & $DefaultOutput
+Rename-Computer -NewName $ComputerName | Out-Null
 
 Write-Host "Installing Pre-requisites" -ForegroundColor Green
 
 Write-Host "    Chocolatey Script" -ForegroundColor Magenta
-Invoke-Expression ((New-Object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) | & $DefaultOutput
-Import-Module $env:chocolateyinstall\helpers\chocolateyInstaller.psm1 | & $DefaultOutput
+Invoke-Expression ((New-Object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
+Import-Module $env:chocolateyinstall\helpers\chocolateyInstaller.psm1 | Out-Null
 
 Write-Host "    NuGet Package Provider" -ForegroundColor Magenta 
-Install-PackageProvider -Name NuGet -Confirm:$false -Force | & $DefaultOutput
+Install-PackageProvider -Name NuGet -Confirm:$false -Force | Out-Null
 
 Write-Host "    VS Setup Script" -ForegroundColor Magenta
-Install-Module VSSetup -Scope CurrentUser -Confirm:$false -Force | & $DefaultOutput
+Install-Module VSSetup -Scope CurrentUser -Confirm:$false -Force | Out-Null
 
 Write-Host "    Windows Update Powershell Script" -ForegroundColor Magenta
-Install-Module PSWindowsUpdate -Confirm:$false -Force | & $DefaultOutput
+Install-Module PSWindowsUpdate -Confirm:$false -Force | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                   ENVIRONMENT VARIABLES
@@ -40,99 +39,101 @@ Update-SessionEnvironment
 
 # Visual Studio
 Write-Host "Installing Visual Studio" -ForegroundColor Green
-choco install visualstudio2017enterprise -y | & $DefaultOutput #visualstudio2017professional or visualstudio2017community
+choco install visualstudio2017enterprise -y | Out-Null #visualstudio2017professional or visualstudio2017community
 
 #Choose your workloads. More information on workloads can be found at https://chocolatey.org/search?q=visualstudio2017-workload
 Write-Host "    Installing Azure" -ForegroundColor Magenta
-# choco install visualstudio2017-workload-azure -y | & $DefaultOutput # Broken ATM - https://github.com/jberezanski/ChocolateyPackages/issues/35
+# choco install visualstudio2017-workload-azure -y | Out-Null # Broken ATM - https://github.com/jberezanski/ChocolateyPackages/issues/35
 Write-Host "    Installing Data Storage & Processing" -ForegroundColor Magenta
-choco install visualstudio2017-workload-data -y | & $DefaultOutput
+choco install visualstudio2017-workload-data -y | Out-Null
 Write-Host "    Installing .NET Desktop" -ForegroundColor Magenta
-choco install visualstudio2017-workload-manageddesktop -y | & $DefaultOutput
+choco install visualstudio2017-workload-manageddesktop -y | Out-Null
 Write-Host "    Installing .NET Core" -ForegroundColor Magenta
-choco install visualstudio2017-workload-netcoretools -y | & $DefaultOutput
+choco install visualstudio2017-workload-netcoretools -y | Out-Null
 Write-Host "    Installing Web Development" -ForegroundColor Magenta
-choco install visualstudio2017-workload-netweb -y | & $DefaultOutput
+choco install visualstudio2017-workload-netweb -y | Out-Null
 
 #SQL Server Management Studio
 Write-Host "Install SQL Server Management Studio" -ForegroundColor Green
-choco install sql-server-management-studio -y | & $DefaultOutput
+choco install sql-server-management-studio -y | Out-Null
 
 # Visual Studio Code
 Write-Host "Installing Visual Studio Code" -ForegroundColor Green
-choco install visualstudiocode -y --params '"/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders"' | & $DefaultOutput
+choco install visualstudiocode -y --params '"/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders"' | Out-Null
 Update-SessionEnvironment
 
 Write-Host "    Installing C# Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode.csharp | & $DefaultOutput
+code --install-extension ms-vscode.csharp | Out-Null
 Write-Host "    Installing PowerShell Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode.PowerShell | & $DefaultOutput
+code --install-extension ms-vscode.PowerShell | Out-Null
 Write-Host "    Installing Chrome Debugger Extension" -ForegroundColor Magenta
-code --install-extension msjsdiag.debugger-for-chrome | & $DefaultOutput
+code --install-extension msjsdiag.debugger-for-chrome | Out-Null
 Write-Host "    Installing Angular Extension" -ForegroundColor Magenta
-code --install-extension johnpapa.Angular2 | & $DefaultOutput
+code --install-extension johnpapa.Angular2 | Out-Null
 Write-Host "    Installing Docker Extension" -ForegroundColor Magenta
-code --install-extension PeterJausovec.vscode-docker | & $DefaultOutput
+code --install-extension PeterJausovec.vscode-docker | Out-Null
 Write-Host "    Installing Git Lens Extension" -ForegroundColor Magenta
-code --install-extension eamodio.gitlens | & $DefaultOutput
+code --install-extension eamodio.gitlens | Out-Null
 Write-Host "    Installing Spell Checker Extension" -ForegroundColor Magenta
-code --install-extension streetsidesoftware.code-spell-checker | & $DefaultOutput
+code --install-extension streetsidesoftware.code-spell-checker | Out-Null
 Write-Host "    Installing VSTS Extension" -ForegroundColor Magenta
-code --install-extension ms-vsts.team | & $DefaultOutput
+code --install-extension ms-vsts.team | Out-Null
 Write-Host "    Installing SQL Extension" -ForegroundColor Magenta
-code --install-extension ms-mssql.mssql | & $DefaultOutput
+code --install-extension ms-mssql.mssql | Out-Null
 Write-Host "    Installing Azure Account Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode.azure-account | & $DefaultOutput
+code --install-extension ms-vscode.azure-account | Out-Null
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
-choco install office365proplus -y | & $DefaultOutput
+choco install office365proplus -y | Out-Null
 
 #Various Apps
 Write-Host "Installing Various Apps" -ForegroundColor Green
 
 Write-Host "    Git" -ForegroundColor Magenta
-choco install git.install -y --params '/NoShellIntegration' | & $DefaultOutput
+choco install git.install -y --params '/NoShellIntegration' | Out-Null
 Write-Host "    Telnet" -ForegroundColor Magenta
-choco install TelnetClient -source windowsFeatures | & $DefaultOutput
+choco install TelnetClient -source windowsFeatures | Out-Null
 Write-Host "    Adobe Acrobat Reader" -ForegroundColor Magenta
-choco install adobereader -y | & $DefaultOutput
+choco install adobereader -y | Out-Null
 Write-Host "    Node.js" -ForegroundColor Magenta
-choco install nodejs.install -y | & $DefaultOutput
+choco install nodejs.install -y | Out-Null
 Write-Host "    Google Chrome" -ForegroundColor Magenta
-choco install googlechrome -y | & $DefaultOutput
+choco install googlechrome -y | Out-Null
 Write-Host "    Skype" -ForegroundColor Magenta
-choco install skype -y | & $DefaultOutput
+choco install skype -y | Out-Null
 Write-Host "    Sysinternals" -ForegroundColor Magenta
-choco install sysinternals -y | & $DefaultOutput
+choco install sysinternals -y | Out-Null
 Write-Host "    Notepad++" -ForegroundColor Magenta
-choco install notepadplusplus -y | & $DefaultOutput
+choco install notepadplusplus -y | Out-Null
 Write-Host "    7-Zip" -ForegroundColor Magenta
-choco install 7zip.install -y | & $DefaultOutput
+choco install 7zip.install -y | Out-Null
 Write-Host "    VLC" -ForegroundColor Magenta
-choco install vlc -y | & $DefaultOutput
+choco install vlc -y | Out-Null
 Write-Host "    Cmder Mini" -ForegroundColor Magenta
-choco install cmdermini -y | & $DefaultOutput
+choco install cmdermini -y | Out-Null
 Write-Host "    CCleaner" -ForegroundColor Magenta
-choco install CCleaner -y | & $DefaultOutput
+choco install CCleaner -y | Out-Null
 Write-Host "    Paint.net" -ForegroundColor Magenta
-choco install paint.net -y | & $DefaultOutput
+choco install paint.net -y | Out-Null
 Write-Host "    Calibre" -ForegroundColor Magenta
-choco install calibre -y | & $DefaultOutput
+choco install calibre -y | Out-Null
 Write-Host "    DiffMerge" -ForegroundColor Magenta
-choco install diffmerge  -y | & $DefaultOutput
+choco install diffmerge  -y | Out-Null
 Write-Host "    WhatsApp" -ForegroundColor Magenta
-choco install whatsapp -y | & $DefaultOutput
+choco install whatsapp -y | Out-Null
 Write-Host "    Microsoft Teams" -ForegroundColor Magenta
-choco install microsoft-teams -y | & $DefaultOutput
+choco install microsoft-teams -y | Out-Null
 Write-Host "    Slack" -ForegroundColor Magenta
-choco install slack -y | & $DefaultOutput
-Write-Host "    Royal TS" -ForegroundColor Magenta
-choco install royalts -y | & $DefaultOutput
+choco install slack -y | Out-Null
+Write-Host "    Remote Desktop Manager" -ForegroundColor Magenta
+choco install rdcman -y | Out-Null
 Write-Host "    Steam" -ForegroundColor Magenta
-choco install steam -y | & $DefaultOutput
+choco install steam -y | Out-Null
 Write-Host "    ReSharper" -ForegroundColor Magenta
-choco install resharper-platform -y | & $DefaultOutput
+choco install resharper -y | Out-Null
+Write-Host "    DotPeek" -ForegroundColor Magenta
+choco install dotpeek -y | Out-Null
 
 Update-SessionEnvironment
 
@@ -220,11 +221,11 @@ ForEach ($CurrentAppName in $ApplicationList) {
     $ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object {$_.Displayname -eq $CurrentAppName}).PackageName
 
     if ($PackageFullName) {
-        Remove-AppxPackage -Package $PackageFullName | & $DefaultOutput
+        Remove-AppxPackage -Package $PackageFullName | Out-Null
     }
 
     if ($ProPackageFullName) {        
-        Remove-AppxProvisionedPackage -Online -PackageName $ProPackageFullName | & $DefaultOutput
+        Remove-AppxProvisionedPackage -Online -PackageName $ProPackageFullName | Out-Null
     }
 }
 
@@ -234,16 +235,16 @@ ForEach ($CurrentAppName in $ApplicationList) {
 #####################################################################################################################################################################################################
 Write-Host "Downloading Remote Files" -ForegroundColor Green
 
-New-Item ($env:UserProfile + "\.gitconfig") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Git/.gitconfig')) -Force | & $DefaultOutput
-New-Item ($env:ChocolateyToolsLocation + "\cmdermini\vendor\conemu-maximus5\ConEmu.xml") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Cmder/ConEmu.xml')) -Force | & $DefaultOutput
+New-Item ($env:UserProfile + "\.gitconfig") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Git/.gitconfig')) -Force | Out-Null
+New-Item ($env:ChocolateyToolsLocation + "\cmdermini\vendor\conemu-maximus5\ConEmu.xml") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Cmder/ConEmu.xml')) -Force | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                   WINDOWS PREFERENCES
 #####################################################################################################################################################################################################
 Write-Host "Setting Windows Preferences" -ForegroundColor Green    
 
-New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | & $DefaultOutput
-New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS | & $DefaultOutput
+New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
+New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS | Out-Null
 
 # Show Hidden Files
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 1 -ErrorAction SilentlyContinue
@@ -392,6 +393,9 @@ Remove-Item "HKCR:\Folder\ShellEx\ContextMenuHandlers\Library Location" -Recurse
 # Remove "Pin to Quick Access" From Context Menu   
 Remove-Item "HKLM:\SOFTWARE\Classes\Folder\shell\pintohome" -Recurse -ErrorAction SilentlyContinue
 Remove-Item "HKCR:\Folder\shell\pintohome" -Recurse -ErrorAction SilentlyContinue
+
+# Remove "Quick Access" from File Explorer
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "HubMode" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
 # Remove "New Contact" From Context Menu   
 Remove-Item "HKCR:\.contact\ShellNew" -Recurse -ErrorAction SilentlyContinue
@@ -543,22 +547,22 @@ Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Desktop (create shortcut).D
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Documents.mydocs" -ErrorAction SilentlyContinue
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Mail Recipient.MAPIMail" -ErrorAction SilentlyContinue
 
-Remove-PSDrive -Name HKCR | & $DefaultOutput
-Remove-PSDrive -Name HKU | & $DefaultOutput
+Remove-PSDrive -Name HKCR | Out-Null
+Remove-PSDrive -Name HKU | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                  ADD/REMOVE WINDOWS FEATURES
 #####################################################################################################################################################################################################
 Write-Host "Adding/Removing Windows Features" -ForegroundColor Green
 
-Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "FaxServicesClientPackage" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart | & $DefaultOutput
-Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart | & $DefaultOutput
+Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "FaxServicesClientPackage" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
@@ -585,46 +589,61 @@ Remove-Item "$env:UserProfile\Desktop\*.lnk"
 
 # $VisualStudioExe = Join-Path -Path ((Get-VSSetupInstance | Select-VSSetupInstance -Latest).InstallationPath) -ChildPath "\Common7\IDE\devenv.exe"
 
-# Remove-Item "${env:APPDATA}\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\*" -Recurse | & $DefaultOutput
-# Remove-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Recurse | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "$($env:windir)\explorer.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Outlook.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "$VisualStudioExe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\ssms.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ChocolateyToolsLocation}\cmder\cmder.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Onenote.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Notepad++\Notepad++.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:UserProfile}\AppData\Local\WhatsApp\WhatsApp.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Skype\Phone\Skype.exe" | & $DefaultOutput
-# Install-ChocolateyPinnedTaskBarItem "${env:UserProfile}\AppData\Local\Microsoft\Teams\current\Teams.exe" | & $DefaultOutput
+# Remove-Item "${env:APPDATA}\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\*" -Recurse | Out-Null
+# Remove-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Recurse | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "$($env:windir)\explorer.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Outlook.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "$VisualStudioExe" | Out-Null# 
+# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
+# # Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\ssms.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:ChocolateyToolsLocation}\cmdermini\cmder.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Onenote.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Notepad++\Notepad++.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Skype\Phone\Skype.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:UserProfile}\AppData\Local\WhatsApp\WhatsApp.exe" | Out-Null
+# Install-ChocolateyPinnedTaskBarItem "${env:UserProfile}\AppData\Local\Microsoft\Teams\current\Teams.exe" | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                   FILE ASSOCIATION (CURRENTLY NOT WORKING IN WINDOWS 10)
 #####################################################################################################################################################################################################
 # Write-Host "Setting Up Defaut File Associations" -ForegroundColor Green
 
-# Install-ChocolateyFileAssociation ".txt" "${env:ProgramFiles}\Notepad++\Notepad++.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".log" "${env:ProgramFiles}\Notepad++\Notepad++.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".xml" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".cs" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".ps1" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".psm1" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".config" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".avi" "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".mp4" "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" | & $DefaultOutput
-# Install-ChocolateyFileAssociation ".mkv" "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" | & $DefaultOutput
+# Install-ChocolateyFileAssociation ".txt" "${env:ProgramFiles}\Notepad++\Notepad++.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".log" "${env:ProgramFiles}\Notepad++\Notepad++.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".xml" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".cs" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".ps1" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".psm1" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".config" "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".avi" "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".mp4" "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" | Out-Null
+# Install-ChocolateyFileAssociation ".mkv" "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" | Out-Null
 
 Stop-Process -ProcessName explorer
+
+#####################################################################################################################################################################################################
+#                                                  CONFIGURING STARTUP APPLICATIONS
+#####################################################################################################################################################################################################
+Write-Host "Configuring Startup Applications" -ForegroundColor Green
+
+Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Steam" -ErrorAction SilentlyContinue
+
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Outlook" -Value "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Outlook.exe" -Force -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Chrome" -Value "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe" -Force -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "WhatsApp" -Value "${env:UserProfile}\AppData\Local\WhatsApp\WhatsApp.exe" -Force -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "OneNote" -Value "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Onenote.exe" -Force -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Cmder" -Value "${env:ChocolateyToolsLocation}\cmdermini\cmder.exe" -Force -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Notepad++" -Value "${env:ProgramFiles}\Notepad++\Notepad++.exe" -Force -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Explorer" -Value "$($env:windir)\explorer.exe" -Force -ErrorAction SilentlyContinue
 
 #####################################################################################################################################################################################################
 #                                                   UPDATE WINDOWS
 #####################################################################################################################################################################################################
 Write-Host "Updating Windows" -ForegroundColor Green
 
-Add-WUServiceManager -ServiceID 7971f918-a847-4430-9279-4a52d1efe18d -Confirm:$false | & $DefaultOutput
-Get-WUInstall -MicrosoftUpdate -AcceptAll | & $DefaultOutput
+Add-WUServiceManager -ServiceID 7971f918-a847-4430-9279-4a52d1efe18d -Confirm:$false | Out-Null
+Get-WUInstall -MicrosoftUpdate -AcceptAll | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                   CLEAN UP
@@ -633,7 +652,7 @@ Write-Host "Cleaning Up..." -ForegroundColor Green
     
 Write-Host "    Temp Folders" -ForegroundColor Magenta
 $Tempfolders = @("C:\Windows\Temp\*", "C:\Windows\Prefetch\*", "C:\Documents and Settings\*\Local Settings\Temp\*", "C:\Users\*\Appdata\Local\Temp\*")
-Remove-Item $Tempfolders -Force -Recurse -ErrorAction SilentlyContinue | & $DefaultOutput
+Remove-Item $Tempfolders -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
 
 Write-Host "    Scheduling Cleanup Of WinSXS Folder on Next Startup" -ForegroundColor Magenta
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Cleanup WinSXS" -Value "Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase" | & $DefaultOutput 
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Cleanup WinSXS" -Value "Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase" | Out-Null 
