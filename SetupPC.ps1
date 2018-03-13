@@ -40,27 +40,27 @@ Update-SessionEnvironment
 
 # Visual Studio
 Write-Host "Installing Visual Studio" -ForegroundColor Green
-choco install visualstudio2017enterprise -y | Out-Null #visualstudio2017professional or visualstudio2017community
+choco install visualstudio2017enterprise -y #visualstudio2017professional or visualstudio2017community
 
 #Choose your workloads. More information on workloads can be found at https://chocolatey.org/search?q=visualstudio2017-workload
 Write-Host "    Installing Azure" -ForegroundColor Magenta
-# choco install visualstudio2017-workload-azure -y | Out-Null # Broken ATM - https://github.com/jberezanski/ChocolateyPackages/issues/35
+# choco install visualstudio2017-workload-azure -y # Broken ATM - https://github.com/jberezanski/ChocolateyPackages/issues/35
 Write-Host "    Installing Data Storage & Processing" -ForegroundColor Magenta
-choco install visualstudio2017-workload-data -y | Out-Null
+choco install visualstudio2017-workload-data -y
 Write-Host "    Installing .NET Desktop" -ForegroundColor Magenta
-choco install visualstudio2017-workload-manageddesktop -y | Out-Null
+choco install visualstudio2017-workload-manageddesktop -y
 Write-Host "    Installing .NET Core" -ForegroundColor Magenta
-choco install visualstudio2017-workload-netcoretools -y | Out-Null
+choco install visualstudio2017-workload-netcoretools -y
 Write-Host "    Installing Web Development" -ForegroundColor Magenta
-choco install visualstudio2017-workload-netweb -y | Out-Null
+choco install visualstudio2017-workload-netweb -y
 
 #SQL Server Management Studio
 Write-Host "Install SQL Server Management Studio" -ForegroundColor Green
-choco install sql-server-management-studio -y | Out-Null
+choco install sql-server-management-studio -y
 
 # Visual Studio Code
 Write-Host "Installing Visual Studio Code" -ForegroundColor Green
-choco install visualstudiocode -y --params '"/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders"' | Out-Null
+choco install visualstudiocode -y --params '"/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders"'
 Update-SessionEnvironment
 
 Write-Host "    Installing C# Extension" -ForegroundColor Magenta
@@ -86,55 +86,55 @@ code --install-extension ms-vscode.azure-account | Out-Null
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
-choco install office365proplus -y | Out-Null
+choco install office365proplus -y
 
 #Various Apps
 Write-Host "Installing Various Apps" -ForegroundColor Green
 
 Write-Host "    Git" -ForegroundColor Magenta
-choco install git.install -y --params '/NoShellIntegration' | Out-Null
+choco install git.install -y --params '/NoShellIntegration'
 Write-Host "    Telnet" -ForegroundColor Magenta
-choco install TelnetClient -source windowsFeatures | Out-Null
+choco install TelnetClient -source windowsFeatures
 Write-Host "    Adobe Acrobat Reader" -ForegroundColor Magenta
-choco install adobereader -y | Out-Null
+choco install adobereader -y
 Write-Host "    Node.js" -ForegroundColor Magenta
-choco install nodejs.install -y | Out-Null
+choco install nodejs.install -y
 Write-Host "    Google Chrome" -ForegroundColor Magenta
-choco install googlechrome -y | Out-Null
+choco install googlechrome -y
 Write-Host "    Skype" -ForegroundColor Magenta
-choco install skype -y | Out-Null
+choco install skype -y
 Write-Host "    Sysinternals" -ForegroundColor Magenta
-choco install sysinternals -y | Out-Null
+choco install sysinternals -y
 Write-Host "    Notepad++" -ForegroundColor Magenta
-choco install notepadplusplus -y | Out-Null
+choco install notepadplusplus -y
 Write-Host "    7-Zip" -ForegroundColor Magenta
-choco install 7zip.install -y | Out-Null
+choco install 7zip.install -y
 Write-Host "    VLC" -ForegroundColor Magenta
-choco install vlc -y | Out-Null
+choco install vlc -y
 Write-Host "    Cmder Mini" -ForegroundColor Magenta
-choco install cmdermini -y | Out-Null
+choco install cmdermini -y
 Write-Host "    CCleaner" -ForegroundColor Magenta
-choco install CCleaner -y | Out-Null
+choco install CCleaner -y
 Write-Host "    Paint.net" -ForegroundColor Magenta
-choco install paint.net -y | Out-Null
+choco install paint.net -y
 Write-Host "    Calibre" -ForegroundColor Magenta
-choco install calibre -y | Out-Null
+choco install calibre -y
 Write-Host "    DiffMerge" -ForegroundColor Magenta
-choco install diffmerge  -y | Out-Null
+choco install diffmerge  -y
 Write-Host "    WhatsApp" -ForegroundColor Magenta
-choco install whatsapp -y | Out-Null
+choco install whatsapp -y
 Write-Host "    Microsoft Teams" -ForegroundColor Magenta
-choco install microsoft-teams -y | Out-Null
+choco install microsoft-teams -y
 Write-Host "    Slack" -ForegroundColor Magenta
-choco install slack -y | Out-Null
+choco install slack -y
 Write-Host "    Remote Desktop Manager" -ForegroundColor Magenta
-choco install rdcman -y | Out-Null
+choco install rdcman -y
 Write-Host "    Steam" -ForegroundColor Magenta
-choco install steam -y | Out-Null
+choco install steam -y
 Write-Host "    ReSharper" -ForegroundColor Magenta
-choco install resharper -y | Out-Null
+choco install resharper -y
 Write-Host "    DotPeek" -ForegroundColor Magenta
-choco install dotpeek -y | Out-Null
+choco install dotpeek -y
 
 Update-SessionEnvironment
 
