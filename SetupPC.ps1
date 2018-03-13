@@ -5,7 +5,8 @@ $ErrorActionPreference = "Continue"
 #####################################################################################################################################################################################################
 #                                                   PRE-REQUISITES
 #####################################################################################################################################################################################################
-Write-Host "Please Enter Your Desired Computer Name: "
+Clear-Host
+Write-Host "Please Enter Your Desired Computer Name: "  -ForegroundColor Cyan 
 $ComputerName = Read-Host 
 Rename-Computer -NewName $ComputerName | Out-Null
 
