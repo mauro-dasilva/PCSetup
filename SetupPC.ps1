@@ -83,6 +83,9 @@ Write-Host "    Installing SQL Extension" -ForegroundColor Magenta
 code --install-extension ms-mssql.mssql | Out-Null
 Write-Host "    Installing Azure Account Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.azure-account | Out-Null
+Write-Host "    Installing Angular Template" -ForegroundColor Magenta
+code --install-extension Angular.ng-template | Out-Null
+
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
@@ -238,7 +241,10 @@ Write-Host "Downloading Remote Files" -ForegroundColor Green
 
 New-Item ($env:UserProfile + "\.gitconfig") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Git/.gitconfig')) -Force | Out-Null
 New-Item ($env:ChocolateyToolsLocation + "\cmdermini\vendor\conemu-maximus5\ConEmu.xml") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Cmder/ConEmu.xml')) -Force | Out-Null
+New-Item ($env:UserProfile + "\AppData\Roaming\Code\User\keybindings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/VSCode/keybindings.json')) -Force | Out-Null
+New-Item ($env:UserProfile + "\AppData\Roaming\Code\User\settings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/VSCode/settings.json')) -Force | Out-Null
 
+C:\Users\mauro.dasilva\AppData\Roaming\Code\User
 #####################################################################################################################################################################################################
 #                                                   WINDOWS PREFERENCES
 #####################################################################################################################################################################################################
