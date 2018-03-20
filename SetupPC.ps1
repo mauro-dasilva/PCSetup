@@ -85,6 +85,8 @@ Write-Host "    Installing Azure Account Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.azure-account | Out-Null
 Write-Host "    Installing Angular Template" -ForegroundColor Magenta
 code --install-extension Angular.ng-template | Out-Null
+Write-Host "    Installing Material Icon Theme" -ForegroundColor Magenta
+code --install-extension PKief.material-icon-theme | Out-Null
 
 
 #Office 365

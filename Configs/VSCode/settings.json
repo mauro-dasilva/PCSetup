@@ -1,5 +1,11 @@
 {
     "editor.minimap.enabled": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
     "team.showWelcomeMessage": false,
     "explorer.confirmDelete": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.scrollback": 2000,
+    "terminal.integrated.cursorBlinking": true,
 }
