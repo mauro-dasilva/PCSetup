@@ -1,8 +1,8 @@
 # Automated PC Setup
 
-Automates the Installation &amp; Configuration of a Windows PC
+Automates various Machine Installations
 
-## Notes
+## Windows Notes
 
 * You need to run Powershell as an Administrator 
 
