@@ -1,6 +1,7 @@
 $OfficeVersion = 16
 $WarningPreference = "SilentlyContinue"
 $ErrorActionPreference = "Continue"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 #####################################################################################################################################################################################################
 #                                                   PRE-REQUISITES
@@ -89,7 +90,8 @@ Write-Host "    Installing Angular Template" -ForegroundColor Magenta
 code --install-extension Angular.ng-template | Out-Null
 Write-Host "    Installing Material Icon Theme" -ForegroundColor Magenta
 code --install-extension PKief.material-icon-theme | Out-Null
-
+Write-Host "    Installing YAML Extension" -ForegroundColor Magenta
+code --install-extension redhat.vscode-yaml | Out-Null
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
@@ -142,6 +144,11 @@ Write-Host "    ReSharper" -ForegroundColor Magenta
 choco install resharper -y
 Write-Host "    DotPeek" -ForegroundColor Magenta
 choco install dotpeek -y
+Write-Host "    Tweeten (Manual Installation)" -ForegroundColor Magenta
+$LatestTweetenVersion = ((Invoke-WebRequest https://github.com/MehediH/Tweeten/releases/latest -UseBasicParsing -Headers @{"Accept" = "application/json"}).Content | ConvertFrom-Json).tag_name
+$TweetenDownloadLocation = Join-Path -Path $env:temp -ChildPath "TweetenSetup.exe"
+Invoke-WebRequest -Uri "https://github.com/MehediH/Tweeten/releases/download/$LatestTweetenVersion/TweetenSetup.exe" -OutFile $TweetenDownloadLocation | Out-Null
+Start-Process -FilePath $TweetenDownloadLocation
 
 Update-SessionEnvironment
 
@@ -219,7 +226,8 @@ $ApplicationList = "Microsoft.BingFinance",
 "PandoraMediaInc.29680B314EFC2",
 "AdobeSystemIncorporated.AdobePhotoshop",
 "Microsoft.Print3D",
-"Microsoft.GetHelp"
+"Microsoft.GetHelp",
+"king.com.BubbleWitch3Saga"
 
 ForEach ($CurrentAppName in $ApplicationList) {
 
@@ -243,12 +251,11 @@ ForEach ($CurrentAppName in $ApplicationList) {
 #####################################################################################################################################################################################################
 Write-Host "Downloading Remote Files" -ForegroundColor Green
 
-New-Item ($env:UserProfile + "\.gitconfig") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Git/.gitconfig')) -Force | Out-Null
-New-Item ($env:ChocolateyToolsLocation + "\cmdermini\vendor\conemu-maximus5\ConEmu.xml") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Cmder/ConEmu.xml')) -Force | Out-Null
-New-Item ($env:UserProfile + "\AppData\Roaming\Code\User\keybindings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/VSCode/keybindings.json')) -Force | Out-Null
-New-Item ($env:UserProfile + "\AppData\Roaming\Code\User\settings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/VSCode/settings.json')) -Force | Out-Null
+New-Item (Join-Path -Path $env:UserProfile -ChildPath "\.gitconfig") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Git/.gitconfig')) -Force | Out-Null
+New-Item (Join-Path -Path $env:ChocolateyToolsLocation -ChildPath "\cmdermini\vendor\conemu-maximus5\ConEmu.xml") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/Cmder/ConEmu.xml')) -Force | Out-Null
+New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Roaming\Code\User\keybindings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/VSCode/keybindings.json')) -Force | Out-Null
+New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Roaming\Code\User\settings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/AutomatedPcSetup/master/Configs/VSCode/settings.json')) -Force | Out-Null
 
-C:\Users\mauro.dasilva\AppData\Roaming\Code\User
 #####################################################################################################################################################################################################
 #                                                   WINDOWS PREFERENCES
 #####################################################################################################################################################################################################
@@ -296,8 +303,8 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
 # Enable P2P Downloads over LAN only
-New-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -ErrorAction SilentlyContinue
-New-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" -ErrorAction SilentlyContinue
+New-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -ErrorAction SilentlyContinue | Out-Null
+New-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" -Name "SystemSettingsDownloadMode" -Type DWord -Value 3 -ErrorAction SilentlyContinue
 
@@ -371,6 +378,10 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 
 # Hiding Titles in Taskbar
 Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -ErrorAction SilentlyContinue
+
+# Hide the My People Icon in the Taskbar
+Set-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer\" -Name "HidePeopleBar" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Explorer\" -Name "HidePeopleBar" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
 # Enabling NumLock After Startup
 Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type DWord -Value 2147483650 -ErrorAction SilentlyContinue
@@ -557,6 +568,7 @@ Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Bluetooth File Transfer.LNK
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Desktop (create shortcut).DeskLink" -ErrorAction SilentlyContinue
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Documents.mydocs" -ErrorAction SilentlyContinue
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Mail Recipient.MAPIMail" -ErrorAction SilentlyContinue
+Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Fax recipient.lnk" -ErrorAction SilentlyContinue
 
 Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
@@ -566,15 +578,15 @@ Remove-PSDrive -Name HKU | Out-Null
 #####################################################################################################################################################################################################
 Write-Host "Adding/Removing Windows Features" -ForegroundColor Green
 
-Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart | Out-Null
-Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "FaxServicesClientPackage" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart | Out-Null
+Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "FaxServicesClientPackage" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
