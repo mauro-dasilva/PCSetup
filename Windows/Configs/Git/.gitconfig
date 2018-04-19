@@ -34,7 +34,7 @@
     co = checkout
     ec = config --global -e
 	rh = reset --hard
-    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    up = !git pull --prune $@ && git submodule update --init --recursive
 	cob = checkout -b
 	c = !git add -A && git commit
     cm = !git add -A && git commit -m
