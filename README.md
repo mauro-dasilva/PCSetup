@@ -2,7 +2,23 @@
 
 Automates various Machine Installations
 
-## Windows Notes
+##What Does It Do?
+
+Below is a list of some of the functions of the script:
+
+* Installs Various Applications via Chocolatey
+* Removes Pre-Installed Windows UWP Bloatware Apps
+* Downloads various configs & settings
+* Adjusts various Windows Preferences
+* Add/Remove Windows Features
+* Creates Various Folders
+* Setup Taskbar (Not working in Win 10)
+* Setup File Associations (Not Working in Win 10)
+* Configure Start Up Applications
+* Updates Windows
+* Cleanup
+
+## Notes
 
 * You need to run Powershell as an Administrator 
 
