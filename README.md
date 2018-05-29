@@ -2,7 +2,7 @@
 
 Automates various Machine Installations
 
-##What Does It Do?
+## What Does It Do?
 
 Below is a list of some of the functions of the script:
 
