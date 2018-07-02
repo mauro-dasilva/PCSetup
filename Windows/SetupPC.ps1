@@ -94,6 +94,8 @@ Write-Host "    Installing YAML Extension" -ForegroundColor Magenta
 code --install-extension redhat.vscode-yaml | Out-Null
 Write-Host "    Installing TSLint Extension" -ForegroundColor Magenta
 code --install-extension eg2.tslint | Out-Null
+Write-Host "    Installing Azure Resource Manager Tools" -ForegroundColor Magenta
+code --install-extension msazurermtools.azurerm-vscode-tools | Out-Null
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
