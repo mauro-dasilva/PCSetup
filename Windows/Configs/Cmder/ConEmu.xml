@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2018-07-02 11:36:21" build="180206">
+		<key name=".Vanilla" modified="2018-07-04 15:10:17" build="180206">
 			<value name="ColorTable00" type="dword" data="00222827"/>
 			<value name="ColorTable01" type="dword" data="009e5401"/>
 			<value name="ColorTable02" type="dword" data="0004aa74"/>
@@ -126,15 +126,15 @@
 			<value name="ColorKeyValue" type="dword" data="00010101"/>
 			<value name="UseCurrentSizePos" type="hex" data="01"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd Width" type="dword" data="000000b5"/>
-			<value name="ConWnd Height" type="dword" data="00000025"/>
+			<value name="ConWnd Width" type="dword" data="00000127"/>
+			<value name="ConWnd Height" type="dword" data="00000043"/>
 			<value name="Cascaded" type="hex" data="01"/>
-			<value name="ConWnd X" type="long" data="-1693"/>
-			<value name="ConWnd Y" type="long" data="243"/>
+			<value name="ConWnd X" type="long" data="-1766"/>
+			<value name="ConWnd Y" type="long" data="493"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="AutoSaveSizePos" type="hex" data="00"/>
 			<value name="IntegralSize" type="hex" data="00"/>
-			<value name="QuakeStyle" type="hex" data="02"/>
+			<value name="QuakeStyle" type="hex" data="00"/>
 			<value name="QuakeAnimation" type="ulong" data="300"/>
 			<value name="HideCaption" type="hex" data="00"/>
 			<value name="HideChildCaption" type="hex" data="01"/>
@@ -289,7 +289,7 @@
 			<value name="MonitorConsoleLang" type="hex" data="03"/>
 			<value name="DesktopMode" type="hex" data="00"/>
 			<value name="SnapToDesktopEdges" type="hex" data="00"/>
-			<value name="AlwaysOnTop" type="hex" data="01"/>
+			<value name="AlwaysOnTop" type="hex" data="00"/>
 			<value name="SleepInBackground" type="hex" data="01"/>
 			<value name="MinimizeOnLoseFocus" type="hex" data="00"/>
 			<value name="DisableFarFlashing" type="hex" data="00"/>
