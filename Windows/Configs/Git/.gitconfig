@@ -46,7 +46,8 @@
     wipe = !git add -A && git commit -qm 'Wipe Savepoint' && git reset HEAD~1 --hard
     bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
     bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-	sync = !git up && git push
+	sync = !git up && git push]
+	squashb = !git reset $(git merge-base master $(git rev-parse --abbrev-ref HEAD))
 	mi = "!f(){ git rebase -i HEAD~\"$1\"; };f"
 	# branch-name	required	Name of the new branch.
 	# target-branch	  optional	Defaults to â€œmasterâ€. The branch that the new branch is created off of.
