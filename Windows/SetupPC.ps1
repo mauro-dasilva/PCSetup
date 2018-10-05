@@ -61,7 +61,7 @@ choco install sql-server-management-studio -y
 
 # Visual Studio Code
 Write-Host "Installing Visual Studio Code" -ForegroundColor Green
-choco install visualstudiocode -y --params '"/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders"'
+choco install vscode -y --params '"/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders"'
 Update-SessionEnvironment
 
 Write-Host "    Installing C# Extension" -ForegroundColor Magenta
