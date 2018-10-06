@@ -397,6 +397,11 @@ Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 # Hide the My People Icon in the Taskbar
 Set-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer\" -Name "HidePeopleBar" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
+#Enable Nearby Sharing
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\CDP\" -Name "CdpSessionUserAuthzPolicy" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\CDP\" -Name "NearShareChannelUserAuthzPolicy" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\CDP\SettingsPage\" -Name "NearShareChannelUserAuthzPolicy" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
 # Enabling NumLock After Startup
 Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type DWord -Value 2147483650 -ErrorAction SilentlyContinue
 Add-Type -AssemblyName System.Windows.Forms -ErrorAction SilentlyContinue
