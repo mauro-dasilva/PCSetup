@@ -148,6 +148,8 @@ Write-Host "    ReSharper" -ForegroundColor Magenta
 choco install resharper -y
 Write-Host "    DotPeek" -ForegroundColor Magenta
 choco install dotpeek -y
+Write-Host "    Postman" -ForegroundColor Magenta
+choco install postman -y
 Write-Host "    Tweeten (Manual Installation)" -ForegroundColor Magenta
 $LatestTweetenVersion = ((Invoke-WebRequest https://github.com/MehediH/Tweeten/releases/latest -UseBasicParsing -Headers @{"Accept" = "application/json"}).Content | ConvertFrom-Json).tag_name
 $TweetenDownloadLocation = Join-Path -Path $env:temp -ChildPath "TweetenSetup.exe"
