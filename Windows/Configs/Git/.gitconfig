@@ -37,6 +37,7 @@
 	rh = reset --hard
     up = !git pull --prune $@ && git submodule update --init --recursive
 	cob = checkout -b
+	cobp = !git checkout -b $1 && git push -u origin
 	c = !git add -A && git commit
     cm = !git add -A && git commit -m
 	com = !git co master && git up
