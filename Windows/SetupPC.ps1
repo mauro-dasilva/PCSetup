@@ -274,6 +274,13 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "PlaySound" -Type DWord -Value 0 -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "ShowEnvelope" -Type DWord -Value 0 -ErrorAction SilentlyContinue
 
+# Change the Region to Australia
+Set-ItemProperty -Path "HKCU:\Control Panel\International\Geo" -Name "Name" -Type String -Value "AU" -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\Control Panel\International\Geo" -Name "Nation" -Type String -Value "12" -ErrorAction SilentlyContinue
+
+# Enable "Let Windows Try Fix Apps that are Blurry"
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "EnablePerProcessSystemDPI" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
 # Show Hidden Files
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
