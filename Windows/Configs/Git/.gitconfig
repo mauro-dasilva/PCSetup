@@ -83,3 +83,5 @@
 	statusHints = false
 [push]
 	default = simple
+[pack]
+	useSparse = true
