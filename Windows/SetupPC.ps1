@@ -96,6 +96,8 @@ Write-Host "    Installing Azure Resource Manager Tools" -ForegroundColor Magent
 code --install-extension msazurermtools.azurerm-vscode-tools | Out-Null
 Write-Host "    Installing Remote Development Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack | Out-Null
+Write-Host "    Installing React/Redux/GraphQL Snippets Extension" -ForegroundColor Magenta
+code --install-extension dsznajder.es7-react-js-snippets | Out-Null
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
@@ -151,7 +153,7 @@ choco install dotpeek -y
 Write-Host "    Postman" -ForegroundColor Magenta
 choco install postman -y
 Write-Host "    Tweeten (Manual Installation)" -ForegroundColor Magenta
-$LatestTweetenVersion = ((Invoke-WebRequest https://github.com/MehediH/Tweeten/releases/latest -UseBasicParsing -Headers @{"Accept" = "application/json"}).Content | ConvertFrom-Json).tag_name
+$LatestTweetenVersion = ((Invoke-WebRequest https://github.com/MehediH/Tweeten/releases/latest -UseBasicParsing -Headers @{"Accept" = "application/json" }).Content | ConvertFrom-Json).tag_name
 $TweetenDownloadLocation = Join-Path -Path $env:temp -ChildPath "TweetenSetup.exe"
 Invoke-WebRequest -Uri "https://github.com/MehediH/Tweeten/releases/download/$LatestTweetenVersion/TweetenSetup.exe" -OutFile $TweetenDownloadLocation | Out-Null
 Start-Process -FilePath $TweetenDownloadLocation
@@ -239,7 +241,7 @@ ForEach ($CurrentAppName in $ApplicationList) {
     Write-Host "    Removing $CurrentAppName" -ForegroundColor Magenta
     
     $PackageFullName = (Get-AppxPackage $CurrentAppName).PackageFullName
-    $ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object {$_.Displayname -eq $CurrentAppName}).PackageName
+    $ProPackageFullName = (Get-AppxProvisionedPackage -online | Where-Object { $_.Displayname -eq $CurrentAppName }).PackageName
 
     if ($PackageFullName) {
         Remove-AppxPackage -Package $PackageFullName | Out-Null
@@ -537,8 +539,8 @@ Remove-Item "HKCR:\Directory\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F7
 Remove-Item "HKCR:\Drive\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}" -Recurse -ErrorAction SilentlyContinue
 
 # Remove "Add to VLC media player's Playlist" From Context Menu  
-Get-Item -Path HKCR:\VLC.*\shell\AddToPlaylistVLC  | Remove-Item -Recurse -ErrorAction SilentlyContinue
-Get-Item -Path HKCR:\VLC.*\shell\PlayWithVLC  | Remove-Item -Recurse -ErrorAction SilentlyContinue
+Get-Item -Path HKCR:\VLC.*\shell\AddToPlaylistVLC | Remove-Item -Recurse -ErrorAction SilentlyContinue
+Get-Item -Path HKCR:\VLC.*\shell\PlayWithVLC | Remove-Item -Recurse -ErrorAction SilentlyContinue
 Remove-Item "HKCR:\Directory\shell\AddtoPlaylistVLC" -Recurse -ErrorAction SilentlyContinue
 Remove-Item "HKCR:\Directory\shell\PlayWithVLC" -Recurse -ErrorAction SilentlyContinue
 
