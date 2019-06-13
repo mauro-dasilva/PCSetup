@@ -98,6 +98,9 @@ Write-Host "    Installing Remote Development Extension" -ForegroundColor Magent
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack | Out-Null
 Write-Host "    Installing React/Redux/GraphQL Snippets Extension" -ForegroundColor Magenta
 code --install-extension dsznajder.es7-react-js-snippets | Out-Null
+Write-Host "    Installing Azure IoT Tools" -ForegroundColor Magenta
+code --install-extension vsciot-vscode.azure-iot-tools | Out-Null
+
 
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
