@@ -619,6 +619,22 @@ Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Fax recipient.lnk" -ErrorAc
 Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
 
+
+#####################################################################################################################################################################################################
+#                                                  INSTALL FONTS
+#####################################################################################################################################################################################################
+ 
+$SourceDir = Join-Path -Path $PSScriptRoot -ChildPath "\Fonts"
+$FontFolder = (New-Object -ComObject Shell.Application).Namespace(0x14)
+
+Get-ChildItem -Path $Source -Include '*.ttf', '*.ttc', '*.otf' -Recurse | ForEach {    
+    $WindowsFont = Join-Path -Path $FontFolder.self.Path -ChildPath $_.Name    
+    If ((Test-Path $WindowsFont) -eq $false) {        
+        $Font = Join-Path -Path $SourceDir -ChildPath $_.Name
+        $FontFolder.CopyHere($Font, 0x10)
+    }
+}
+
 #####################################################################################################################################################################################################
 #                                                  ADD/REMOVE WINDOWS FEATURES
 #####################################################################################################################################################################################################
