@@ -129,8 +129,6 @@ Write-Host "    7-Zip" -ForegroundColor Magenta
 choco install 7zip.install -y
 Write-Host "    VLC" -ForegroundColor Magenta
 choco install vlc -y
-Write-Host "    Cmder Mini" -ForegroundColor Magenta
-choco install cmdermini -y 
 Write-Host "    CCleaner" -ForegroundColor Magenta
 choco install CCleaner -y
 Write-Host "    Paint.net" -ForegroundColor Magenta
@@ -155,6 +153,8 @@ Write-Host "    DotPeek" -ForegroundColor Magenta
 choco install dotpeek -y
 Write-Host "    Postman" -ForegroundColor Magenta
 choco install postman -y
+Write-Host "    Powershell Core" -ForegroundColor Magenta
+choco install powershell-core -y
 Write-Host "    Tweeten (Manual Installation)" -ForegroundColor Magenta
 $LatestTweetenVersion = ((Invoke-WebRequest https://github.com/MehediH/Tweeten/releases/latest -UseBasicParsing -Headers @{"Accept" = "application/json" }).Content | ConvertFrom-Json).tag_name
 $TweetenDownloadLocation = Join-Path -Path $env:temp -ChildPath "TweetenSetup.exe"
@@ -262,9 +262,13 @@ ForEach ($CurrentAppName in $ApplicationList) {
 Write-Host "Downloading Remote Files" -ForegroundColor Green
 
 New-Item (Join-Path -Path $env:UserProfile -ChildPath "\.gitconfig") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Git/.gitconfig')) -Force | Out-Null
-New-Item (Join-Path -Path $env:ChocolateyToolsLocation -ChildPath "\cmdermini\vendor\conemu-maximus5\ConEmu.xml") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Cmder/ConEmu.xml')) -Force | Out-Null
 New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Roaming\Code\User\keybindings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/VSCode/keybindings.json')) -Force | Out-Null
 New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Roaming\Code\User\settings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/VSCode/settings.json')) -Force | Out-Null
+New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Local\packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\profiles.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Terminal/Profiles.json')) -Force | Out-Null
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Terminal/Icons/Cmd.png', (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Local\packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\Cmd.png")) | Out-Null
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Terminal/Icons/Powershell.png', (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Local\packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\Powershell.png")) | Out-Null
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Terminal/Icons/Ubuntu.png', (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Local\packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\Ubuntu.png")) | Out-Null
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Terminal/Icons/VisualStudio.png', (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Local\packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\VisualStudio.png")) | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                   WINDOWS PREFERENCES
@@ -306,8 +310,11 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main" -N
 # Disable Ads in Windows Explorer
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications"  -Type DWord -Value 0 -ErrorAction SilentlyContinue
 
-# Hide Cortana Circle
+# Hide Search Box on Taskbar
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
+# Hide Cortana on Taskbar
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowCortanaButton " -Type DWord -Value 0 -ErrorAction SilentlyContinue
 
 # Enable Cloud Clipboard
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Clipboard" -Name "EnableClipboardHistory" -Type DWord -Value 1 -ErrorAction SilentlyContinue
@@ -697,7 +704,6 @@ If ([Environment]::OSVersion.Version.Major -lt 10) {
     Install-ChocolateyPinnedTaskBarItem "$VisualStudioExe" | Out-Null 
     Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe" | Out-Null
     Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\ssms.exe" | Out-Null
-    Install-ChocolateyPinnedTaskBarItem "${env:ChocolateyToolsLocation}\cmdermini\cmder.exe" | Out-Null  # See https://github.com/cmderdev/cmder/issues/154#issuecomment-168455895 for workaround on pinning icon
     Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Onenote.exe" | Out-Null
     Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Notepad++\Notepad++.exe" | Out-Null
     Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Skype\Phone\Skype.exe" | Out-Null
@@ -737,7 +743,6 @@ Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Outlook" -Value "${env:ProgramFiles(x86)}\Microsoft Office\root\Office$OfficeVersion\Outlook.exe" -Force -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Chrome" -Value "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe" -Force -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "WhatsApp" -Value "${env:UserProfile}\AppData\Local\WhatsApp\WhatsApp.exe" -Force -ErrorAction SilentlyContinue
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Cmder" -Value "${env:ChocolateyToolsLocation}\cmdermini\cmder.exe" -Force -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Notepad++" -Value "${env:ProgramFiles}\Notepad++\Notepad++.exe" -Force -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Explorer" -Value "$($env:windir)\explorer.exe" -Force -ErrorAction SilentlyContinue
 
