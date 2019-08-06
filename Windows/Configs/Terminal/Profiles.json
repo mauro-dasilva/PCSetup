@@ -170,7 +170,8 @@
         ],
         "requestedTheme": "dark",
         "showTabsInTitlebar": true,
-        "showTerminalTitleInTitlebar": true
+        "showTerminalTitleInTitlebar": true,
+        "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
     },
     "profiles": [
         {
@@ -188,6 +189,7 @@
             "icon": "ms-appdata:///roaming/Cmd.png",
             "name": "Cmd",
             "padding": "0, 0, 0, 0",
+            "tabTitle": "CMD",
             "snapOnInput": true,
             "startingDirectory": "C:/",
             "useAcrylic": true
@@ -206,6 +208,7 @@
             "historySize": 9001,
             "icon": "ms-appdata:///roaming/Powershell.png",
             "name": "Powershell",
+            "tabTitle": "Powershell",
             "padding": "0, 0, 0, 0",
             "snapOnInput": true,
             "startingDirectory": "C:/",
@@ -223,6 +226,7 @@
             "guid": "{8d04ce37-c00f-43ac-ba47-992cb1393215}",
             "historySize": 9001,
             "icon": "ms-appdata:///roaming/Linux.png",
+            "tabTitle": "Bash",
             "name": "Bash",
             "padding": "0, 0, 0, 0",
             "snapOnInput": true,
