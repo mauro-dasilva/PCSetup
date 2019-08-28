@@ -12,6 +12,12 @@
                 ]
             },
             {
+                "command": "copy",
+                "keys": [
+                    "ctrl+c"
+                ]
+            },
+            {
                 "command": "newTab",
                 "keys": [
                     "ctrl+t"
@@ -170,6 +176,7 @@
         ],
         "requestedTheme": "dark",
         "showTabsInTitlebar": true,
+        "copyOnSelect": true,
         "showTerminalTitleInTitlebar": true,
         "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
     },
@@ -189,9 +196,9 @@
             "icon": "ms-appdata:///roaming/Cmd.png",
             "name": "Cmd",
             "padding": "0, 0, 0, 0",
-            "tabTitle": "CMD",
             "snapOnInput": true,
             "startingDirectory": "C:/",
+            "tabTitle": "CMD",
             "useAcrylic": true
         },
         {
@@ -208,10 +215,10 @@
             "historySize": 9001,
             "icon": "ms-appdata:///roaming/Powershell.png",
             "name": "Powershell",
-            "tabTitle": "Powershell",
             "padding": "0, 0, 0, 0",
             "snapOnInput": true,
             "startingDirectory": "C:/",
+            "tabTitle": "Powershell",
             "useAcrylic": true
         },
         {
@@ -226,11 +233,11 @@
             "guid": "{8d04ce37-c00f-43ac-ba47-992cb1393215}",
             "historySize": 9001,
             "icon": "ms-appdata:///roaming/Linux.png",
-            "tabTitle": "Bash",
             "name": "Bash",
             "padding": "0, 0, 0, 0",
             "snapOnInput": true,
             "startingDirectory": "/mnt/c/",
+            "tabTitle": "Bash",
             "useAcrylic": true
         }
     ],
