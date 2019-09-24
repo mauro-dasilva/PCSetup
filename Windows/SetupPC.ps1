@@ -70,8 +70,6 @@ Write-Host "    Installing PowerShell Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.PowerShell | Out-Null
 Write-Host "    Installing Chrome Debugger Extension" -ForegroundColor Magenta
 code --install-extension msjsdiag.debugger-for-chrome | Out-Null
-Write-Host "    Installing Angular Extension" -ForegroundColor Magenta
-code --install-extension johnpapa.Angular2 | Out-Null
 Write-Host "    Installing Docker Extension" -ForegroundColor Magenta
 code --install-extension PeterJausovec.vscode-docker | Out-Null
 Write-Host "    Installing Git Lens Extension" -ForegroundColor Magenta
@@ -84,14 +82,10 @@ Write-Host "    Installing SQL Extension" -ForegroundColor Magenta
 code --install-extension ms-mssql.mssql | Out-Null
 Write-Host "    Installing Azure Account Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.azure-account | Out-Null
-Write-Host "    Installing Angular Template" -ForegroundColor Magenta
-code --install-extension Angular.ng-template | Out-Null
 Write-Host "    Installing Material Icon Theme" -ForegroundColor Magenta
 code --install-extension PKief.material-icon-theme | Out-Null
 Write-Host "    Installing YAML Extension" -ForegroundColor Magenta
 code --install-extension redhat.vscode-yaml | Out-Null
-Write-Host "    Installing TSLint Extension" -ForegroundColor Magenta
-code --install-extension eg2.tslint | Out-Null
 Write-Host "    Installing Azure Resource Manager Tools" -ForegroundColor Magenta
 code --install-extension msazurermtools.azurerm-vscode-tools | Out-Null
 Write-Host "    Installing Remote Development Extension" -ForegroundColor Magenta
