@@ -147,6 +147,8 @@ Write-Host "    DotPeek" -ForegroundColor Magenta
 choco install dotpeek -y
 Write-Host "    Postman" -ForegroundColor Magenta
 choco install postman -y
+Write-Host "    Typora" -ForegroundColor Magenta
+choco install typora -y
 Write-Host "    Powershell Core" -ForegroundColor Magenta
 choco install powershell-core -y
 Write-Host "    Tweeten (Manual Installation)" -ForegroundColor Magenta
