@@ -12,7 +12,7 @@
 	
 [mergetool "diffmerge"]
     trustExitCode = true
-    cmd = sgdm --merge --result=$MERGED $REMOTE $BASE $LOCAL --title1=Mine --title2=Merged --title3=Theirs
+    cmd = sgdm --merge --result=$MERGED $REMOTE $BASE $LOCAL --title1=Theirs --title2=Merged --title3=Mine
 
 [mergetool "beyondcompare"]
     trustExitCode = true
