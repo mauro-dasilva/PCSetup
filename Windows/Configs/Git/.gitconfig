@@ -40,6 +40,7 @@
 	cobp = !git checkout -b $1 && git push -u origin
 	cm = !git add -A && git commit -m
 	com = !git co master && git up
+	fpush = !git push --force-with-lease origin $(git branch | grep \\* | cut -d ' ' -f2)
     save = !git add -A && git commit -m 'Savepoint'
     undo = reset HEAD~1 --mixed
     amend = commit -a --amend
@@ -83,5 +84,7 @@
 	statusHints = false
 [push]
 	default = simple
+[winUpdater]
+	recentlySeenVersion = 2.23.0.windows.1
 [pack]
 	useSparse = true
