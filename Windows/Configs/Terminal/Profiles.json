@@ -48,7 +48,7 @@
             "colorScheme": "Ubuntu",
             "cursorColor": "#FFFFFF",
             "fontFace": "Cascadia Code",
-            "startingDirectory": "/mnt/c/"            
+            "startingDirectory": "/mnt/c/"
         },
         {
             "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
@@ -213,5 +213,12 @@
     ],
     // Add any keybinding overrides to this array.
     // To unbind a default keybinding, set the command to "unbound"
-    "keybindings": []
+    "keybindings": [
+        {
+            "command": "closeTab",
+            "keys": [
+                "ctrl+w"
+            ]
+        }
+    ]
 }
