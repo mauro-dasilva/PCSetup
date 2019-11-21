@@ -643,6 +643,7 @@ Write-Host "Adding/Removing Windows Features" -ForegroundColor Green
 
 Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Enable-WindowsOptionalFeature -Online -FeatureName "Containers-DisposableClientVM" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "FaxServicesClientPackage" -NoRestart -ErrorAction SilentlyContinue | Out-Null
@@ -650,6 +651,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" 
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+
 
 #####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
