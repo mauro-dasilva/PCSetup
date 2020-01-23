@@ -55,9 +55,22 @@ choco install visualstudio2019-workload-netcoretools -y
 Write-Host "    Installing Web Development" -ForegroundColor Magenta
 choco install visualstudio2019-workload-netweb -y
 
-#SQL Server Management Studio
-Write-Host "Install SQL Server Management Studio" -ForegroundColor Green
-choco install sql-server-management-studio -y
+#Azure Data Studio
+Write-Host "Install Azure Data Studio" -ForegroundColor Green
+choco install azure-data-studio -y
+Update-SessionEnvironment
+
+Write-Host "    Installing CMS Extension" -ForegroundColor Magenta
+azuredatastudio --install-extension microsoft.cms | Out-Null
+Write-Host "    Installing Admin Pack Extension" -ForegroundColor Magenta
+azuredatastudio --install-extension microsoft.admin-pack | Out-Null
+Write-Host "    Installing Admin Tool Extension" -ForegroundColor Magenta
+azuredatastudio --install-extension microsoft.admin-tool-ext-win | Out-Null
+Write-Host "    Installing SQL Search Extension" -ForegroundColor Magenta
+azuredatastudio --install-extension redgate.sql-search | Out-Null
+Write-Host "    Installing Managed Instance Dashboard Extension" -ForegroundColor Magenta
+azuredatastudio --install-extension microsoft.managed-instance-dashboard | Out-Null
+
 
 # Visual Studio Code
 Write-Host "Installing Visual Studio Code" -ForegroundColor Green
@@ -95,14 +108,16 @@ code --install-extension dsznajder.es7-react-js-snippets | Out-Null
 Write-Host "    Installing Azure IoT Tools" -ForegroundColor Magenta
 code --install-extension vsciot-vscode.azure-iot-tools | Out-Null
 
-
 #Office 365
 Write-Host "Installing Office 365" -ForegroundColor Green
 choco install office365proplus -y
 
+
 #Various Apps
 Write-Host "Installing Various Apps" -ForegroundColor Green
 
+Write-Host "    Azure Storage Explorer" -ForegroundColor Magenta
+choco install microsoftazurestorageexplorer -y
 Write-Host "    Git" -ForegroundColor Magenta
 choco install git.install -y --params '/NoShellIntegration'
 Write-Host "    Telnet" -ForegroundColor Magenta
@@ -111,8 +126,6 @@ Write-Host "    Adobe Acrobat Reader" -ForegroundColor Magenta
 choco install adobereader -y
 Write-Host "    Node.js" -ForegroundColor Magenta
 choco install nodejs.install -y
-Write-Host "    Google Chrome" -ForegroundColor Magenta
-choco install googlechrome -y
 Write-Host "    Skype" -ForegroundColor Magenta
 choco install skype -y
 Write-Host "    Sysinternals" -ForegroundColor Magenta
