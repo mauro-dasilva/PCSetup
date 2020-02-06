@@ -297,6 +297,9 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook
 Set-ItemProperty -Path "HKCU:\Control Panel\International\Geo" -Name "Name" -Type String -Value "AU" -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Control Panel\International\Geo" -Name "Nation" -Type String -Value "12" -ErrorAction SilentlyContinue
 
+# Enable Paths Greater than 260 Characters
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
 # Enable "Let Windows Try Fix Apps that are Blurry"
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "EnablePerProcessSystemDPI" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
@@ -657,6 +660,7 @@ Get-ChildItem -Path $Source -Include '*.ttf', '*.ttc', '*.otf' -Recurse | ForEac
 Write-Host "Adding/Removing Windows Features" -ForegroundColor Green
 
 Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -ErrorAction SilentlyContinue | Out-Null
+Enable-WindowsOptionalFeature -Online -FeatureName "VirtualMachinePlatform" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Enable-WindowsOptionalFeature -Online -FeatureName "Containers-DisposableClientVM" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -ErrorAction SilentlyContinue | Out-Null
@@ -666,7 +670,6 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" 
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -ErrorAction SilentlyContinue | Out-Null
-
 
 #####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
