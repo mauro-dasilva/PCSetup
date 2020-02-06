@@ -79,7 +79,8 @@
 [credential]
 	helper = wincred
 [core]
-	editor = code --wait	
+	editor = code --wait
+	longpaths = true
 [advice]
 	statusHints = false
 [push]
