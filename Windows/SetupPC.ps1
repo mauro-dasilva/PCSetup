@@ -122,12 +122,8 @@ Write-Host "    Git" -ForegroundColor Magenta
 choco install git.install -y --params '/NoShellIntegration'
 Write-Host "    Telnet" -ForegroundColor Magenta
 choco install TelnetClient -source windowsFeatures
-Write-Host "    Adobe Acrobat Reader" -ForegroundColor Magenta
-choco install adobereader -y
 Write-Host "    Node.js" -ForegroundColor Magenta
 choco install nodejs.install -y
-Write-Host "    Skype" -ForegroundColor Magenta
-choco install skype -y
 Write-Host "    Sysinternals" -ForegroundColor Magenta
 choco install sysinternals -y
 Write-Host "    Notepad++" -ForegroundColor Magenta
