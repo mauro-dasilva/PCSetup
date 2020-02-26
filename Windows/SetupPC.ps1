@@ -32,7 +32,6 @@ Install-Module PSWindowsUpdate -Confirm:$false -Force | Out-Null
 Write-Host "Setting up Environment Variables" -ForegroundColor Green
 
 [Environment]::SetEnvironmentVariable('ChocolateyToolsLocation', ${env:ProgramFiles(x86)}, "User")
-[Environment]::SetEnvironmentVariable('Path', $Env:Path + ";${env:ProgramFiles}\SourceGear\Common\DiffMerge\", "User")
 Update-SessionEnvironment
   
 #####################################################################################################################################################################################################
@@ -138,8 +137,8 @@ Write-Host "    Paint.net" -ForegroundColor Magenta
 choco install paint.net -y
 Write-Host "    Calibre" -ForegroundColor Magenta
 choco install calibre -y
-Write-Host "    DiffMerge" -ForegroundColor Magenta
-choco install diffmerge  -y
+Write-Host "    P4Merge" -ForegroundColor Magenta
+choco install p4merge  -y
 Write-Host "    WhatsApp" -ForegroundColor Magenta
 choco install whatsapp -y
 Write-Host "    Microsoft Teams" -ForegroundColor Magenta
