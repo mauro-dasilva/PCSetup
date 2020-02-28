@@ -667,6 +667,15 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-Interne
 Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 
 #####################################################################################################################################################################################################
+#                                                  ADD WINDOWS SUBSYSTEM FOR LINUX
+#####################################################################################################################################################################################################
+Write-Host "Adding Windows Subsystem for Linux" -ForegroundColor Green
+$UbuntuDownloadLocation = Join-Path -Path $env:temp -ChildPath "Ubuntu.appx"
+Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile $UbuntuDownloadLocation -UseBasicParsing
+Add-AppxPackage $UbuntuDownloadLocation
+wsl --set-default-version 2 # Use V2 of WSL By Default
+
+#####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
 #####################################################################################################################################################################################################
 Write-Host "Setting up Keyboard Preferences" -ForegroundColor Green
