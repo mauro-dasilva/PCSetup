@@ -45,6 +45,7 @@
 	cob = checkout -b
 	cobp = !git checkout -b $1 && git push -u origin
 	cm = !git add -A && git commit -m
+	cmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	com = !git co master && git up
 	fpush = !git push --force-with-lease origin $(git branch | grep \\* | cut -d ' ' -f2)
     save = !git add -A && git commit -m 'Savepoint'
