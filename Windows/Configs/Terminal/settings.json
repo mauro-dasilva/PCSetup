@@ -2,8 +2,9 @@
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "defaultProfile": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "requestedTheme": "dark",
+    "multiLinePasteWarning": false,
     "copyOnSelect": true,
     "profiles": [
         {
@@ -14,7 +15,7 @@
             "closeOnExit": false,
             "colorScheme": "Espresso",
             "cursorColor": "#00FF00",
-            "fontFace": "Cascadia Code",
+            "fontFace": "CaskaydiaCove NF",
             "startingDirectory": "C:/"
         },
         {
@@ -25,7 +26,7 @@
             "closeOnExit": false,
             "colorScheme": "ToyChest",
             "cursorColor": "#FFFFFF",
-            "fontFace": "Cascadia Code",
+            "fontFace": "CaskaydiaCove NF",
             "startingDirectory": "C:/"
         },
         {
@@ -36,7 +37,7 @@
             "closeOnExit": false,
             "colorScheme": "ToyChest",
             "cursorColor": "#FFFFFF",
-            "fontFace": "Cascadia Code",
+            "fontFace": "CaskaydiaCove NF",
             "startingDirectory": "C:/"
         },
         {
@@ -47,7 +48,7 @@
             "closeOnExit": false,
             "colorScheme": "Ubuntu",
             "cursorColor": "#FFFFFF",
-            "fontFace": "Cascadia Code",
+            "fontFace": "CaskaydiaCove NF",
             "startingDirectory": "/mnt/c/"
         },
         {
@@ -58,7 +59,7 @@
             "closeOnExit": false,
             "colorScheme": "Afterglow",
             "cursorColor": "#FFFFFF",
-            "fontFace": "Cascadia Code",
+            "fontFace": "CaskaydiaCove NF",
             "startingDirectory": "C:/"
         }
     ],
@@ -219,6 +220,15 @@
             "keys": [
                 "ctrl+w"
             ]
+        }
+    ],
+    "actions": [
+        {
+            "command": {
+                "action": "sendInput",
+                "input": "cd ..\r"
+            },
+            "keys": "ctrl+up"
         }
     ]
 }

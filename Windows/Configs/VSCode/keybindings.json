@@ -177,5 +177,18 @@
     {
         "key": "ctrl+e ctrl+u",
         "command": "editor.emmet.action.wrapWithAbbreviation"
+    },
+    {
+        "key": "shift+alt+l",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    {
+        "key": "ctrl+r ctrl+v",
+        "command": "editor.action.refactor",
+        "args": {
+            "kind": "refactor.extract",
+            "preferred": true,
+            "apply": "first"
+        }
     }
 ]

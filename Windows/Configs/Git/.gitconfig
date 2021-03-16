@@ -33,7 +33,7 @@
 
 [user]
 	name = Mauro Da Silva
-	email = mauro.dasilva@outlook.com
+	email = mauro.dasilva@readify.net
 	
 [alias]
 	# Obtained from http://haacked.com/archive/2014/07/28/github-flow-aliases/
@@ -57,13 +57,8 @@
     bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 	sync = !git up && git push
 	mi = "!f(){ git rebase -i HEAD~\"$1\"; };f"
-	# branch-name	required	Name of the new branch.
-	# target-branch	  optional	Defaults to 'master'. The branch that the new branch is created off of.
-	# commit-range		optional	The commits to migrate. Defaults to the current remote tracking branch.
-	# Eg. git migrate new-branch master HEAD~1 or  git migrate new-branch other-branch
-	migrate = "!f(){ CURRENT=$(git symbolic-ref --short HEAD); git checkout -b $1 && git branch --force $CURRENT ${3-'$CURRENT@{u}'} && git rebase --onto ${2-master} $CURRENT; }; f" 
-
-	
+	rbm = !git fetch && git rebase --interactive origin/master
+		
 	# Obtained from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
