@@ -656,7 +656,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRe
 Enable-WindowsOptionalFeature -Online -FeatureName "Containers-DisposableClientVM" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart -ErrorAction SilentlyContinue | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "FaxServicesClientPackage" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -ErrorAction SilentlyContinue | Out-Null
@@ -666,6 +665,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
 winget install Canonical.Ubuntu
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 wsl --set-default-version 2 # Use V2 of WSL By Default
 
 #####################################################################################################################################################################################################
@@ -718,7 +718,6 @@ Remove-Item $Tempfolders -Force -Recurse -ErrorAction SilentlyContinue | Out-Nul
 Write-Host "    Scheduling Cleanup Of WinSXS Folder on Next Startup" -ForegroundColor Magenta
 New-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Cleanup WinSXS" -Value "Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase" | Out-Null 
-
 
 Clear-Host
 Write-Host "You computer is now setup. Please install the following manually as they aren't supported by WinGet yet"  -ForegroundColor Cyan 
