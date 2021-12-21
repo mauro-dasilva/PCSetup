@@ -153,6 +153,8 @@ Write-Host "    Installing Posh Git" -ForegroundColor Green
 Install-Module posh-git -Scope CurrentUser -Confirm:$false -Force | Out-Null
 Write-Host "    Installing PSReadLine" -ForegroundColor Green
 Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck -Confirm:$false | Out-Null
+Write-Host "    Installing Az Module" -ForegroundColor Green
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 
 New-Item -Path $Profile -ItemType "file" -Force
 Add-Content $Profile "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
@@ -233,7 +235,13 @@ $ApplicationList = "Microsoft.BingFinance",
 "AdobeSystemIncorporated.AdobePhotoshop",
 "Microsoft.Print3D",
 "Microsoft.GetHelp",
-"king.com.BubbleWitch3Saga"
+"king.com.BubbleWitch3Saga",
+"MicrosoftWindows.Client.WebExperience",
+"Microsoft.PowerAutomateDesktop",
+"Microsoft.Office.OneNote",
+"Microsoft.MixedReality.Portal",
+"Microsoft.MicrosoftEdge.Beta",
+"LastPass.LastPassFreePasswordManager"
 
 ForEach ($CurrentAppName in $ApplicationList) {
 
@@ -273,7 +281,7 @@ New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS | Out-Null
 # Disable Outlook Notifications
 New-Item "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "ChangePointer" -Type DWord -Value 0 -ErrorAction SilentlyContinue
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "NewmailDesktopAlerts" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+#Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "NewmailDesktopAlerts" -Type DWord -Value 0 -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "PlaySound" -Type DWord -Value 0 -ErrorAction SilentlyContinue
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Office\$OfficeVersion.0\Outlook\Preferences" -Name "ShowEnvelope" -Type DWord -Value 0 -ErrorAction SilentlyContinue
 
@@ -298,9 +306,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 
 # Remove Suggested Apps
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1 -ErrorAction SilentlyContinue
-
-# Enable Do Not Track on Edge
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main" -Name "DoNotTrack" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
 # Disable Ads in Windows Explorer
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications"  -Type DWord -Value 0 -ErrorAction SilentlyContinue
@@ -371,6 +376,9 @@ Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpda
     
 # Disable Auto Play
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" -Name "DisableAutoplay" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
+# Remove Weather Wdiget Taskbar
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Type DWord -Value 2 -ErrorAction SilentlyContinue
 
 #Show Details when Copying Files
 New-Item "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -ErrorAction SilentlyContinue | Out-Null
@@ -626,6 +634,20 @@ Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Documents.mydocs" -ErrorAct
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Mail Recipient.MAPIMail" -ErrorAction SilentlyContinue
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Fax recipient.lnk" -ErrorAction SilentlyContinue
 
+# Remove Widget from Taskbar
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarDa" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
+# Remove Chat from Taskbar
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarMn" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
+# Remove Chat Slider from Taskbar
+New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Dsh" -ErrorAction SilentlyContinue | Out-Null
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Dsh" -Name "AllowNewsAndInterests" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
+# Remove Feeds from Taskbar
+New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" -ErrorAction SilentlyContinue | Out-Null
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" -Name "EnableFeeds" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
 Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
 
@@ -664,9 +686,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-
 #                                                  ADD WINDOWS SUBSYSTEM FOR LINUX
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
-winget install Canonical.Ubuntu
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
-wsl --set-default-version 2 # Use V2 of WSL By Default
+wsl.exe --install
 
 #####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
