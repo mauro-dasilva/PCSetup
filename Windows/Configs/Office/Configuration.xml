@@ -1,0 +1,15 @@
+<Configuration ID="55be3609-3804-47fe-8256-b3b16023aee7">
+  <Add OfficeClientEdition="64" Channel="Current">
+    <Product ID="O365HomePremRetail">
+      <Language ID="en-us" />
+      <Language ID="MatchOS" />
+      <ExcludeApp ID="Access" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="Lync" />
+      <ExcludeApp ID="Publisher" />
+      <ExcludeApp ID="Teams" />
+    </Product>
+  </Add>
+  <Updates Enabled="TRUE" />
+  <RemoveMSI />
+</Configuration>

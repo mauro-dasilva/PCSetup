@@ -27,13 +27,17 @@ Install-Module PSWindowsUpdate -Confirm:$false -Force | Out-Null
 #                                                   INSTALLING APPLICATIONS
 #####################################################################################################################################################################################################
 
+# Microsoft Office
+Write-Host "Installing Microsoft Office (Interactive)" -ForegroundColor Green
+winget install Microsoft.Office --override "/configure https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Office/Configuration.xml" --accept-package-agreements --accept-source-agreements
+
 # Visual Studio
 Write-Host "Installing Visual Studio Professional (Interactive)" -ForegroundColor Green
-winget install Microsoft.VisualStudio.Professional -i
+winget install Microsoft.VisualStudio.2022.Professional -i --accept-package-agreements --accept-source-agreements
 
 #Azure Data Studio
 Write-Host "Installing Azure Data Studio" -ForegroundColor Green
-winget install Microsoft.AzureDataStudio
+winget install Microsoft.AzureDataStudio --accept-package-agreements --accept-source-agreements
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
 Write-Host "    Installing CMS Extension" -ForegroundColor Magenta
@@ -47,10 +51,9 @@ azuredatastudio --install-extension redgate.sql-search | Out-Null
 Write-Host "    Installing Managed Instance Dashboard Extension" -ForegroundColor Magenta
 azuredatastudio --install-extension microsoft.managed-instance-dashboard | Out-Null
 
-
 # Visual Studio Code
 Write-Host "Installing Visual Studio Code" -ForegroundColor Green
-winget install Microsoft.VisualStudioCode-User-x64
+winget install Microsoft.VisualStudioCode --accept-package-agreements --accept-source-agreements
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
 Write-Host "    Installing C# Extension" -ForegroundColor Magenta
@@ -87,57 +90,61 @@ code --install-extension vsciot-vscode.azure-iot-tools | Out-Null
 Write-Host "Installing Various Apps" -ForegroundColor Green
 
 Write-Host "    7Zip" -ForegroundColor Green
-winget install 7zip.7zip 
+winget install 7zip.7zip --accept-package-agreements --accept-source-agreements
 Write-Host "    Azure Storage Emulator" -ForegroundColor Green
-winget install Microsoft.AzureStorageEmulator 
+winget install Microsoft.AzureStorageEmulator --accept-package-agreements --accept-source-agreements
 Write-Host "    Azure Storage Explorer" -ForegroundColor Green
-winget install Microsoft.AzureStorageExplorer 
+winget install Microsoft.AzureStorageExplorer --accept-package-agreements --accept-source-agreements
 Write-Host "    CCleaner" -ForegroundColor Green
-winget install PiriformSoftware.CCleaner 
+winget install Piriform.CCleaner --accept-package-agreements --accept-source-agreements
 Write-Host "    Calibre" -ForegroundColor Green
-winget install calibre.calibre
+winget install calibre.calibre --accept-package-agreements --accept-source-agreements
 Write-Host "    Chrome" -ForegroundColor Green
-winget install Google.Chrome 
-Write-Host "    Fiddler" -ForegroundColor Green
-winget install Telerik.Fiddler
+winget install Google.Chrome --accept-package-agreements --accept-source-agreements
 Write-Host "    Git" -ForegroundColor Magenta
-winget install Git.Git -e
+winget install Git.Git -e --accept-package-agreements --accept-source-agreements
 Write-Host "    Git Fork" -ForegroundColor Magenta
-winget install Fork.Fork
+winget install Fork.Fork --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft Edge" -ForegroundColor Green
-winget install Microsoft.Edge 
+winget install Microsoft.Edge --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft PowerToys" -ForegroundColor Green
-winget install Microsoft.PowerToys
+winget install Microsoft.PowerToys --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft Teams" -ForegroundColor Green
-winget install Microsoft.Teams
+winget install Microsoft.Teams --accept-package-agreements --accept-source-agreements
+Write-Host "    Microsoft ToDo" -ForegroundColor Green
+winget install 9NBLGGH5R558 -s msstore --accept-package-agreements --accept-source-agreements
 Write-Host "    .Net Core" -ForegroundColor Green
-winget install Microsoft.dotnet 
+winget install Microsoft.dotnet --accept-package-agreements --accept-source-agreements
 Write-Host "    .Net Framework" -ForegroundColor Green
-winget install Microsoft.dotNetFramework 
+winget install Microsoft.dotNetFramework --accept-package-agreements --accept-source-agreements
 Write-Host "    Nodejs" -ForegroundColor Green
-winget install OpenJS.Nodejs
+winget install OpenJS.Nodejs --accept-package-agreements --accept-source-agreements
 Write-Host "    Notepad++" -ForegroundColor Green
-winget install Notepad++.Notepad++
-Write-Host "    P4Merge" -ForegroundColor Magenta
-winget install Perforce.P4Merge
+winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
 Write-Host "    Postman" -ForegroundColor Green
-winget install Postman.Postman
+winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
-winget install Microsoft.Powershell
+winget install Microsoft.Powershell --accept-package-agreements --accept-source-agreements
 Write-Host "    JetBrains Dot Ultimate" -ForegroundColor Magenta
-winget install JetBrains.dotUltimate -i
+winget install JetBrains.dotUltimate -i --accept-package-agreements --accept-source-agreements
+Write-Host "    Screen2Gif" -ForegroundColor Green
+winget install NickeManarin.ScreenToGif --accept-package-agreements --accept-source-agreements
+Write-Host "    ShareX" -ForegroundColor Green
+winget install ShareX.ShareX --accept-package-agreements --accept-source-agreements
 Write-Host "    Steam" -ForegroundColor Green
-winget install Valve.Steam
+winget install Valve.Steam --accept-package-agreements --accept-source-agreements
+Write-Host "    Sysinternals" -ForegroundColor Green
+winget install 9P7KNL5RWT25 -s msstore --accept-package-agreements --accept-source-agreements
 Write-Host "    Tweeten" -ForegroundColor Green
-winget install MehediHassan.Tweeten
+winget install MehediHassan.Tweeten --accept-package-agreements --accept-source-agreements
 Write-Host "    Typora" -ForegroundColor Magenta
-winget install Typora.Typora
+winget install Typora.Typora --accept-package-agreements --accept-source-agreements
 Write-Host "    VLC" -ForegroundColor Green
-winget install Videolan.Vlc
+winget install Videolan.Vlc --accept-package-agreements --accept-source-agreements
 Write-Host "    WhatsApp" -ForegroundColor Green
-winget install WhatsApp.WhatsApp
+winget install WhatsApp.WhatsApp --accept-package-agreements --accept-source-agreements
 Write-Host "    Windows Terminal" -ForegroundColor Green
-winget install Microsoft.WindowsTerminal
+winget install Microsoft.WindowsTerminal --accept-package-agreements --accept-source-agreements
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
@@ -680,7 +687,6 @@ Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRest
 Disable-WindowsOptionalFeature -Online -FeatureName "MediaPlayback" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
-Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 
 #####################################################################################################################################################################################################
 #                                                  ADD WINDOWS SUBSYSTEM FOR LINUX
@@ -740,6 +746,4 @@ New-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -ErrorAction 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Cleanup WinSXS" -Value "Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase" | Out-Null 
 
 Clear-Host
-Write-Host "You computer is now setup. Please install the following manually as they aren't supported by WinGet yet"  -ForegroundColor Cyan 
-Write-Host "    * Office 365"  -ForegroundColor Green
-Write-Host "    * Systeinternal Suite"  -ForegroundColor Green
+Write-Host "You computer is now setup!"  -ForegroundColor Cyan
