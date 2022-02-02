@@ -473,6 +473,9 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\VideoSet
 New-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" -Name "{9F156763-7844-4DC4-B2B1-901F640F5155}" -Value "WindowsTerminal" -ErrorAction SilentlyContinue
 
+# Remove "Move to OneDrive" from Context Menu
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" -Name "{CB3D0F55-BC2C-4C1A-85ED-23ED75B5106B}" -Value "" -ErrorAction SilentlyContinue
+
 # Remove "PowerRename" from Context Menu
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" -Name "{0440049F-D1DC-4E46-B27B-98393D79486B}" -Value "PowerRename" -ErrorAction SilentlyContinue
 
@@ -654,6 +657,15 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Dsh" -Name "AllowNewsA
 # Remove Feeds from Taskbar
 New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" -Name "EnableFeeds" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
+# Disable Start Menu App Links
+New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -ErrorAction SilentlyContinue | Out-Null
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
+# Remove Start Up Items
+Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "CCleaner Smart Cleaning" -ErrorAction SilentlyContinue
+Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "Steam" -ErrorAction SilentlyContinue
+Get-Childitem -Path $env:APPDATA"\Microsoft\Windows\Start Menu\Programs\Startup\" -Recurse -Include *.lnk | Remove-Item -Force -Recurse
 
 Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
