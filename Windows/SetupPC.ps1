@@ -68,8 +68,6 @@ Write-Host "    Installing Git Lens Extension" -ForegroundColor Magenta
 code --install-extension eamodio.gitlens | Out-Null
 Write-Host "    Installing Spell Checker Extension" -ForegroundColor Magenta
 code --install-extension streetsidesoftware.code-spell-checker | Out-Null
-Write-Host "    Installing Azure DevOps Extension" -ForegroundColor Magenta
-code --install-extension ms-vsts.team | Out-Null
 Write-Host "    Installing Azure Account Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.azure-account | Out-Null
 Write-Host "    Installing Material Icon Theme" -ForegroundColor Magenta
