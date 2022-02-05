@@ -756,4 +756,6 @@ New-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -ErrorAction 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Cleanup WinSXS" -Value "Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase" | Out-Null 
 
 Clear-Host
+Write-Host "Please Install the following Manually" -ForegroundColor Magenta
+Write-Host "* OneMonokai Theme for Visual Studio" -ForegroundColor Magenta
 Write-Host "You computer is now setup!"  -ForegroundColor Cyan
