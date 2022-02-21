@@ -103,6 +103,8 @@ Write-Host "    Git" -ForegroundColor Magenta
 winget install Git.Git -e --accept-package-agreements --accept-source-agreements
 Write-Host "    Git Fork" -ForegroundColor Magenta
 winget install Fork.Fork --accept-package-agreements --accept-source-agreements
+Write-Host "    Logitech Options" -ForegroundColor Magenta
+winget install Logitech.Options --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft Edge" -ForegroundColor Green
 winget install Microsoft.Edge --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft PowerToys" -ForegroundColor Green
