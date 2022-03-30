@@ -131,6 +131,8 @@ Write-Host "    Screen2Gif" -ForegroundColor Green
 winget install NickeManarin.ScreenToGif --accept-package-agreements --accept-source-agreements
 Write-Host "    ShareX" -ForegroundColor Green
 winget install ShareX.ShareX --accept-package-agreements --accept-source-agreements
+Write-Host "    Slack" -ForegroundColor Green
+winget install SlackTechnologies.Slack --accept-package-agreements --accept-source-agreements
 Write-Host "    Steam" -ForegroundColor Green
 winget install Valve.Steam --accept-package-agreements --accept-source-agreements
 Write-Host "    Sysinternals" -ForegroundColor Green
