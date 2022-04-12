@@ -17,7 +17,7 @@ Write-Host "    NuGet Package Provider" -ForegroundColor Magenta
 Install-PackageProvider -Name NuGet -Confirm:$false -Force | Out-Null
 
 Write-Host "    VS Setup Script" -ForegroundColor Magenta
-Install-Module VSSetup -Scope CurrentUser -Confirm:$false -Force | Out-Null
+Install-Module VSSetup -Confirm:$false -Force | Out-Null
 
 Write-Host "    Windows Update Powershell Script" -ForegroundColor Magenta
 Install-Module PSWindowsUpdate -Confirm:$false -Force | Out-Null
@@ -137,8 +137,6 @@ Write-Host "    Steam" -ForegroundColor Green
 winget install Valve.Steam --accept-package-agreements --accept-source-agreements
 Write-Host "    Sysinternals" -ForegroundColor Green
 winget install 9P7KNL5RWT25 -s msstore --accept-package-agreements --accept-source-agreements
-Write-Host "    Tweeten" -ForegroundColor Green
-winget install MehediHassan.Tweeten --accept-package-agreements --accept-source-agreements
 Write-Host "    Typora" -ForegroundColor Magenta
 winget install Typora.Typora --accept-package-agreements --accept-source-agreements
 Write-Host "    VLC" -ForegroundColor Green
@@ -157,13 +155,13 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";
 Write-Host "Setting up PowerShell" -ForegroundColor Green
 
 Write-Host "    Installing Oh My Posh" -ForegroundColor Green
-Install-Module oh-my-posh -Scope CurrentUser -Confirm:$false -Force | Out-Null
+Install-Module oh-my-posh -Confirm:$false -Force | Out-Null
 Write-Host "    Installing Posh Git" -ForegroundColor Green
-Install-Module posh-git -Scope CurrentUser -Confirm:$false -Force | Out-Null
+Install-Module posh-git -Confirm:$false -Force | Out-Null
 Write-Host "    Installing PSReadLine" -ForegroundColor Green
-Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck -Confirm:$false | Out-Null
+Install-Module -Name PSReadLine -Force -SkipPublisherCheck -Confirm:$false | Out-Null
 Write-Host "    Installing Az Module" -ForegroundColor Green
-Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+Install-Module -Name Az -Repository PSGallery -Force
 
 New-Item -Path $Profile -ItemType "file" -Force
 Add-Content $Profile "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
