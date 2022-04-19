@@ -252,7 +252,8 @@ $ApplicationList = "Microsoft.BingFinance",
 "Microsoft.Office.OneNote",
 "Microsoft.MixedReality.Portal",
 "Microsoft.MicrosoftEdge.Beta",
-"LastPass.LastPassFreePasswordManager"
+"LastPass.LastPassFreePasswordManager",
+"MicrosoftTeams"
 
 ForEach ($CurrentAppName in $ApplicationList) {
 
