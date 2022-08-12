@@ -1,4 +1,4 @@
-$OfficeVersion = 16
+x`$OfficeVersion = 16
 $WarningPreference = "SilentlyContinue"
 $ErrorActionPreference = "Continue"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -60,8 +60,8 @@ Write-Host "    Installing C# Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.csharp | Out-Null
 Write-Host "    Installing PowerShell Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.PowerShell | Out-Null
-Write-Host "    Installing Chrome Debugger Extension" -ForegroundColor Magenta
-code --install-extension msjsdiag.debugger-for-chrome | Out-Null
+Write-Host "    Installing One Monokai Theme" -ForegroundColor Magenta
+code --install-extension azemoh.one-monokai | Out-Null
 Write-Host "    Installing Docker Extension" -ForegroundColor Magenta
 code --install-extension PeterJausovec.vscode-docker | Out-Null
 Write-Host "    Installing Git Lens Extension" -ForegroundColor Magenta
@@ -121,6 +121,8 @@ Write-Host "    Nodejs" -ForegroundColor Green
 winget install OpenJS.Nodejs --accept-package-agreements --accept-source-agreements
 Write-Host "    Notepad++" -ForegroundColor Green
 winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
+Write-Host "    NVidia Broadcast" -ForegroundColor Green
+winget install Nvidia.Broadcast --accept-package-agreements --accept-source-agreements
 Write-Host "    Postman" -ForegroundColor Green
 winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
@@ -192,7 +194,6 @@ $ApplicationList = "Microsoft.BingFinance",
 "Microsoft.WindowsFeedbackHub",
 "Microsoft.OneConnect",
 "Microsoft.SkypeApp",
-"Microsoft.WindowsAlarms",
 "Microsoft.WindowsCamera",
 "Microsoft.WindowsMaps",
 "Microsoft.WindowsPhone",
