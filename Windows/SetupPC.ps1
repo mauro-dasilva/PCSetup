@@ -121,8 +121,6 @@ Write-Host "    Nodejs" -ForegroundColor Green
 winget install OpenJS.Nodejs --accept-package-agreements --accept-source-agreements
 Write-Host "    Notepad++" -ForegroundColor Green
 winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
-Write-Host "    NVidia Broadcast" -ForegroundColor Green
-winget install Nvidia.Broadcast --accept-package-agreements --accept-source-agreements
 Write-Host "    Postman" -ForegroundColor Green
 winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
