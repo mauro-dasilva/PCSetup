@@ -124,7 +124,7 @@ winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-a
 Write-Host "    Postman" -ForegroundColor Green
 winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
-winget install Microsoft.Powershell --accept-package-agreements --accept-source-agreements.
+winget install Microsoft.Powershell --accept-package-agreements --accept-source-agreements
 Write-Host "    JetBrains Dot Ultimate" -ForegroundColor Magenta
 winget install JetBrains.dotUltimate -i --accept-package-agreements --accept-source-agreements
 Write-Host "    Screen2Gif" -ForegroundColor Green
@@ -137,8 +137,6 @@ Write-Host "    Steam" -ForegroundColor Green
 winget install Valve.Steam --accept-package-agreements --accept-source-agreements
 Write-Host "    Sysinternals" -ForegroundColor Green
 winget install 9P7KNL5RWT25 -s msstore --accept-package-agreements --accept-source-agreements
-Write-Host "    Typora" -ForegroundColor Magenta
-winget install Typora.Typora --accept-package-agreements --accept-source-agreements
 Write-Host "    Ubuntu V20.04.4" -ForegroundColor Green
 winget install 9MTTCL66CPXJ -s msstore --accept-package-agreements --accept-source-agreements
 Write-Host "    VLC" -ForegroundColor Green
