@@ -1,4 +1,4 @@
-$OfficeVersion = 16
+x`$OfficeVersion = 16
 $WarningPreference = "SilentlyContinue"
 $ErrorActionPreference = "Continue"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -60,8 +60,8 @@ Write-Host "    Installing C# Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.csharp | Out-Null
 Write-Host "    Installing PowerShell Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.PowerShell | Out-Null
-Write-Host "    Installing Chrome Debugger Extension" -ForegroundColor Magenta
-code --install-extension msjsdiag.debugger-for-chrome | Out-Null
+Write-Host "    Installing One Monokai Theme" -ForegroundColor Magenta
+code --install-extension azemoh.one-monokai | Out-Null
 Write-Host "    Installing Docker Extension" -ForegroundColor Magenta
 code --install-extension PeterJausovec.vscode-docker | Out-Null
 Write-Host "    Installing Git Lens Extension" -ForegroundColor Magenta
@@ -139,14 +139,16 @@ Write-Host "    Steam" -ForegroundColor Green
 winget install Valve.Steam --accept-package-agreements --accept-source-agreements
 Write-Host "    Sysinternals" -ForegroundColor Green
 winget install 9P7KNL5RWT25 -s msstore --accept-package-agreements --accept-source-agreements
-Write-Host "    Typora" -ForegroundColor Magenta
-winget install Typora.Typora --accept-package-agreements --accept-source-agreements
+Write-Host "    Ubuntu V20.04.4" -ForegroundColor Green
+winget install 9MTTCL66CPXJ -s msstore --accept-package-agreements --accept-source-agreements
 Write-Host "    VLC" -ForegroundColor Green
 winget install Videolan.Vlc --accept-package-agreements --accept-source-agreements
 Write-Host "    WhatsApp" -ForegroundColor Green
 winget install WhatsApp.WhatsApp --accept-package-agreements --accept-source-agreements
 Write-Host "    Windows Terminal" -ForegroundColor Green
 winget install Microsoft.WindowsTerminal --accept-package-agreements --accept-source-agreements
+Write-Host "    Zoom" -ForegroundColor Green
+winget install Zoom.Zoom --accept-package-agreements --accept-source-agreements
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
@@ -190,7 +192,6 @@ $ApplicationList = "Microsoft.BingFinance",
 "Microsoft.WindowsFeedbackHub",
 "Microsoft.OneConnect",
 "Microsoft.SkypeApp",
-"Microsoft.WindowsAlarms",
 "Microsoft.WindowsCamera",
 "Microsoft.WindowsMaps",
 "Microsoft.WindowsPhone",
@@ -250,7 +251,8 @@ $ApplicationList = "Microsoft.BingFinance",
 "Microsoft.Office.OneNote",
 "Microsoft.MixedReality.Portal",
 "Microsoft.MicrosoftEdge.Beta",
-"LastPass.LastPassFreePasswordManager"
+"LastPass.LastPassFreePasswordManager",
+"MicrosoftTeams"
 
 ForEach ($CurrentAppName in $ApplicationList) {
 
