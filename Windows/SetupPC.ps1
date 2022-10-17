@@ -119,6 +119,8 @@ Write-Host "    .Net Framework" -ForegroundColor Green
 winget install Microsoft.dotNetFramework --accept-package-agreements --accept-source-agreements
 Write-Host "    Nodejs" -ForegroundColor Green
 winget install OpenJS.Nodejs --accept-package-agreements --accept-source-agreements
+Write-Host "    Notion" -ForegroundColor Green
+winget install Notion.Notion --accept-package-agreements --accept-source-agreements
 Write-Host "    Notepad++" -ForegroundColor Green
 winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
 Write-Host "    Postman" -ForegroundColor Green
