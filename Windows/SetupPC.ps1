@@ -93,8 +93,6 @@ Write-Host "    Azure Storage Emulator" -ForegroundColor Green
 winget install Microsoft.AzureStorageEmulator --accept-package-agreements --accept-source-agreements
 Write-Host "    Azure Storage Explorer" -ForegroundColor Green
 winget install Microsoft.AzureStorageExplorer --accept-package-agreements --accept-source-agreements
-Write-Host "    CCleaner" -ForegroundColor Green
-winget install Piriform.CCleaner --accept-package-agreements --accept-source-agreements
 Write-Host "    Calibre" -ForegroundColor Green
 winget install calibre.calibre --accept-package-agreements --accept-source-agreements
 Write-Host "    Chrome" -ForegroundColor Green
