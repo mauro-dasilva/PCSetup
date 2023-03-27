@@ -142,7 +142,7 @@ winget install 9MTTCL66CPXJ -s msstore --accept-package-agreements --accept-sour
 Write-Host "    VLC" -ForegroundColor Green
 winget install Videolan.Vlc --accept-package-agreements --accept-source-agreements
 Write-Host "    WhatsApp" -ForegroundColor Green
-winget install WhatsApp.WhatsApp --accept-package-agreements --accept-source-agreements
+winget install 9NKSQGP7F2NH -s msstore --accept-package-agreements --accept-source-agreements
 Write-Host "    Windows Terminal" -ForegroundColor Green
 winget install Microsoft.WindowsTerminal --accept-package-agreements --accept-source-agreements
 Write-Host "    Zoom" -ForegroundColor Green
