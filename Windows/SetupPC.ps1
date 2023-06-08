@@ -57,7 +57,9 @@ winget install Microsoft.VisualStudioCode --accept-package-agreements --accept-s
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
 Write-Host "    Installing C# Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode.csharp | Out-Null
+code --install-extension ms-dotnettools.csharp | Out-Null
+Write-Host "    Installing C# DevKit" -ForegroundColor Magenta
+code --install-extension ms-dotnettools.csdevkit | Out-Null
 Write-Host "    Installing PowerShell Extension" -ForegroundColor Magenta
 code --install-extension ms-vscode.PowerShell | Out-Null
 Write-Host "    Installing One Monokai Theme" -ForegroundColor Magenta
