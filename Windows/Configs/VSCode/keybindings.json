@@ -202,5 +202,10 @@
     "key": "ctrl+n",
     "command": "workbench.files.action.createFileFromExplorer",
     "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "workbench.files.action.createFolderFromExplorer",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
   }
 ]
