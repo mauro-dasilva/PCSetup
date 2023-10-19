@@ -105,8 +105,6 @@ Write-Host "    Git Fork" -ForegroundColor Magenta
 winget install Fork.Fork --accept-package-agreements --accept-source-agreements
 Write-Host "    ImageGlass" -ForegroundColor Magenta
 winget install ImageGlass --accept-package-agreements --accept-source-agreements
-Write-Host "    Insomnia" -ForegroundColor Green
-winget install Insomnia.Insomnia --accept-package-agreements --accept-source-agreements
 Write-Host "    Logitech Options" -ForegroundColor Magenta
 winget install Logitech.Options --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft Edge" -ForegroundColor Green
@@ -125,6 +123,8 @@ Write-Host "    Nodejs" -ForegroundColor Green
 winget install OpenJS.Nodejs --accept-package-agreements --accept-source-agreements
 Write-Host "    Notepad++" -ForegroundColor Green
 winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
+Write-Host "    PostMan" -ForegroundColor Green
+winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
 winget install Microsoft.Powershell --accept-package-agreements --accept-source-agreements
 Write-Host "    JetBrains Dot Ultimate" -ForegroundColor Magenta
