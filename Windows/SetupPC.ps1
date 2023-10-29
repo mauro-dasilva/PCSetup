@@ -683,6 +683,15 @@ Get-Childitem -Path $env:APPDATA"\Microsoft\Windows\Start Menu\Programs\Startup\
 New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1 -ErrorAction SilentlyContinue
 
+# Enable End Task on Taskbar
+New-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\DeveloperSettings" -ErrorAction SilentlyContinue | Out-Null
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\DeveloperSettings" -Name "TaskbarEndTask" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
+# Disable Web Search Results in Start Menu
+New-Item "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -ErrorAction SilentlyContinue | Out-Null
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -Type DWord -Value 1 -ErrorAction SilentlyContinue
+
+
 Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
 
@@ -717,10 +726,13 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Featur
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 
 #####################################################################################################################################################################################################
-#                                                  ADD WINDOWS SUBSYSTEM FOR LINUX
+#                                                  ADD DEVELOPER FEATURES
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
 wsl.exe --install
+
+Write-Host "Setting Up Dev Drive" -ForegroundColor Green
+Format-Volume -DriveLetter D -DevDrive
 
 #####################################################################################################################################################################################################
 #                                                  KEYBOARD PREFERENCES
