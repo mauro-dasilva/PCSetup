@@ -694,6 +694,9 @@ Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Nam
 # Hide Gallery from File Explorer
 Remove-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace_41040327\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}" -Recurse -ErrorAction SilentlyContinue
 
+# Remove Copilot Button from Taskbar
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowCopilotButton" -Type DWord -Value 0 -ErrorAction SilentlyContinue
+
 Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
 
