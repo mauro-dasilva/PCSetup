@@ -85,7 +85,6 @@ code --install-extension dsznajder.es7-react-js-snippets | Out-Null
 Write-Host "    Installing Azure IoT Tools" -ForegroundColor Magenta
 code --install-extension vsciot-vscode.azure-iot-tools | Out-Null
 
-
 #Various Apps
 Write-Host "Installing Various Apps" -ForegroundColor Green
 
@@ -123,6 +122,8 @@ Write-Host "    Nodejs" -ForegroundColor Green
 winget install OpenJS.Nodejs --accept-package-agreements --accept-source-agreements
 Write-Host "    Notepad++" -ForegroundColor Green
 winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
+Write-Host "    Oh My Posh" -ForegroundColor Green
+winget install JanDeDobbeleer.OhMyPosh --accept-package-agreements --accept-source-agreements
 Write-Host "    PostMan" -ForegroundColor Green
 winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
@@ -153,23 +154,27 @@ winget install Zoom.Zoom --accept-package-agreements --accept-source-agreements
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
 #####################################################################################################################################################################################################
-#                                                   POWERSHELL
+#                                                   Terminal
 #####################################################################################################################################################################################################
 
-Write-Host "Setting up PowerShell" -ForegroundColor Green
+Write-Host "Setting up Terminal" -ForegroundColor Green
 
-Write-Host "    Installing Oh My Posh" -ForegroundColor Green
-Install-Module oh-my-posh -Confirm:$false -Force | Out-Null
-Write-Host "    Installing Posh Git" -ForegroundColor Green
-Install-Module posh-git -Confirm:$false -Force | Out-Null
-Write-Host "    Installing PSReadLine" -ForegroundColor Green
-Install-Module -Name PSReadLine -Force -SkipPublisherCheck -Confirm:$false | Out-Null
-Write-Host "    Installing Az Module" -ForegroundColor Green
+Write-Host "    Installing Fonnts" -ForegroundColor Magenta
+oh-my-posh font install CascadiaCode
+oh-my-posh font install FiraCode
+
+Write-Host "    Installing Powershell Modules" -ForegroundColor Magenta
 Install-Module -Name Az -Repository PSGallery -Force
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+Install-Module -Name z -Repository PSGallery -Force
 
-New-Item -Path $Profile -ItemType "file" -Force
-Add-Content $Profile "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
 
+Write-Host "    Setting Up PowerShell Profile" -ForegroundColor Magenta
+If (-Not (Test-Path $profile)) {
+    New-Item -Path $profile -Type File -Force
+}
+
+Invoke-WebRequest -Uri "https://gist.githubusercontent.com/shanselman/25f5550ad186189e0e68916c6d7f44c3/raw/279ebbd109cf0868e6d6ba06ede72a1f04137fd2/Microsoft.PowerShell_profile.ps1" -OutFile $profile
 
 #####################################################################################################################################################################################################
 #                                                   REMOVING PREINSTALLED APPS
