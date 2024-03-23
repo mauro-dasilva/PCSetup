@@ -168,13 +168,12 @@ Install-Module -Name Az -Repository PSGallery -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 Install-Module -Name z -Repository PSGallery -Force
 
-
 Write-Host "    Setting Up PowerShell Profile" -ForegroundColor Magenta
 If (-Not (Test-Path $profile)) {
     New-Item -Path $profile -Type File -Force
 }
 
-Invoke-WebRequest -Uri "https://gist.githubusercontent.com/shanselman/25f5550ad186189e0e68916c6d7f44c3/raw/279ebbd109cf0868e6d6ba06ede72a1f04137fd2/Microsoft.PowerShell_profile.ps1" -OutFile $profile
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mauro-dasilva/PCSetup/master/Windows/Configs/Terminal/PowershellProfile.ps1" -OutFile $profile
 
 #####################################################################################################################################################################################################
 #                                                   REMOVING PREINSTALLED APPS
