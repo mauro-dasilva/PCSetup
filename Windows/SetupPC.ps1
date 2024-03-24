@@ -738,7 +738,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-Interne
 #                                                  ADD DEVELOPER FEATURES
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
-wsl.exe --install
+wsl.exe --install -d Ubuntu
 
 Write-Host "Setting Up Dev Drive" -ForegroundColor Green
 Format-Volume -DriveLetter D -DevDrive

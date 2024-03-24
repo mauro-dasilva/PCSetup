@@ -11,11 +11,12 @@
 
 [user]
 	name = Mauro Da Silva
+	email = "mauro.dasilva@outlook.com"
 	
-[alias]
-	# Obtained from http://haacked.com/archive/2014/07/28/github-flow-aliases/
+[alias]	
 	s = status
     co = checkout
+	cbare = clone --bare
     ec = config --global -e
 	rh = reset --hard
     up = !git pull --prune $@ && git submodule update --init --recursive
@@ -23,32 +24,35 @@
 	cobp = !git checkout -b $1 && git push -u origin
 	cm = !git add -A && git commit -m
 	cmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
-	com = !git co master && git up
+	com = !git co main && git up
 	fpush = !git push --force-with-lease origin $(git branch | grep \\* | cut -d ' ' -f2)
     save = !git add -A && git commit -m 'Savepoint'
     undo = reset HEAD~1 --mixed
     amend = commit -a --amend
 	siu = stash --include-untracked
     wipe = !git add -A && git commit -qm 'Wipe Savepoint' && git reset HEAD~1 --hard
-    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
-    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-	sync = !git up && git push
+
+	br2 = "!f() { git branch --merged ${1-main} | grep -v " ${1-main}$" | xargs -r git branch -d; }; f"
+    br = "!f() { git up && git branch --merged | egrep -v '(^\\*|master|develop|main)' | tr -d '+' | xargs -r git branch -d; }; f"    
+    sync = !git up && git push
 	mi = "!f(){ git rebase -i HEAD~\"$1\"; };f"
-	rbm = !git fetch && git rebase --interactive origin/master
+	rbm = !git fetch && git rebase --interactive origin/main
+	
 	wt = worktree
 	wtl = worktree list
-	wta = "!git worktree add .worktree/$1"
-	wtr = !git worktree list --porcelain | grep -E "^worktree" | tail -n+2 | awk '{print $2}' \
+	wta = "!f() { git worktree add .worktrees/$1; git push -u origin $1; }; f"	
+	wtr = "!f() { git up && git branch --merged | grep '^\\+' | egrep -v '(^\\*|master|develop|main)' | tr -d '+' | xargs -r git worktree remove ; }; f"
+	wtco = "!f() { git worktree add ./worktrees/$1 $1; }; f"	
+	
+	sweep = "!git wtr && git br" # Remove all Worktrees and Branches that have been merged
 		
-	# Obtained from http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
 	grep = grep -Ii
 	find = "!git ls-files | grep -i"
 	lt = describe --tags --abbrev=0
 	la = "!git config -l | grep alias | cut -c 7-"
-	
-	# Custom
+		
     mt = mergetool
 	dt = difftool
 	lf = log --name-status
