@@ -8,7 +8,7 @@ if ($host.Name -eq 'ConsoleHost') {
 Import-Module -Name Terminal-Icons
 Import-Module z
 
-oh-my-posh --init --shell pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/larserikfinholt.omp.json" | Invoke-Expression
+oh-my-posh --init --shell pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json" | Invoke-Expression
 
 
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {

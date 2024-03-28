@@ -159,7 +159,7 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";
 
 Write-Host "Setting up Terminal" -ForegroundColor Green
 
-Write-Host "    Installing Fonnts" -ForegroundColor Magenta
+Write-Host "    Installing Fonts" -ForegroundColor Magenta
 oh-my-posh font install CascadiaCode
 oh-my-posh font install FiraCode
 
@@ -705,20 +705,6 @@ Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
 
 
-#####################################################################################################################################################################################################
-#                                                  INSTALL FONTS
-#####################################################################################################################################################################################################
- 
-$SourceDir = Join-Path -Path $PSScriptRoot -ChildPath "\Fonts"
-$FontFolder = (New-Object -ComObject Shell.Application).Namespace(0x14)
-
-Get-ChildItem -Path $Source -Include '*.ttf', '*.ttc', '*.otf' -Recurse | ForEach {    
-    $WindowsFont = Join-Path -Path $FontFolder.self.Path -ChildPath $_.Name    
-    If ((Test-Path $WindowsFont) -eq $false) {        
-        $Font = Join-Path -Path $SourceDir -ChildPath $_.Name
-        $FontFolder.CopyHere($Font, 0x10)
-    }
-}
 
 #####################################################################################################################################################################################################
 #                                                  ADD/REMOVE WINDOWS FEATURES
@@ -735,10 +721,30 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Featur
 Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-InternetPrinting-Client" -NoRestart -ErrorAction SilentlyContinue | Out-Null
 
 #####################################################################################################################################################################################################
-#                                                  ADD DEVELOPER FEATURES
+#                                                  SETUP WSL
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
 wsl.exe --install -d Ubuntu
+wsl.exe sudo apt-get update -y && wsl.exe sudo apt-get upgrade -y && sudo apt-get autoremove -y
+wsl.exe sudo apt-get install wslu -y
+
+Write-Host "    Installing Oh My Posh" -ForegroundColor Magenta
+wsl.exe bash -c "mkdir -p ~/bin"
+wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin"
+
+
+Write-Host "    Installing Fonts" -ForegroundColor Magenta
+wsl.exe oh-my-posh font install CascadiaCode
+wsl.exe oh-my-posh font install FiraCode
+
+Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
+wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" >> ~/.bashrc'
+wsl.exe -e bash -c 'echo "export PATH=\"~/bin:\$PATH\"" >> ~/.bashrc'
+wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" >> ~/.bashrc'
+
+#####################################################################################################################################################################################################
+#                                                  ADD DEVELOPER FEATURES
+#####################################################################################################################################################################################################
 
 Write-Host "Setting Up Dev Drive" -ForegroundColor Green
 Format-Volume -DriveLetter D -DevDrive
