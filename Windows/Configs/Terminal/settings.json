@@ -42,7 +42,8 @@
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
         "hidden": false,
         "name": "cmd",
-        "startingDirectory": "C:/"
+        "startingDirectory": "C:/",
+        "tabColor": "#3D3D3D"
       },
       {
         "closeOnExit": "never",
@@ -55,7 +56,8 @@
         "hidden": false,
         "name": "PowerShell Core",
         "source": "Windows.Terminal.PowershellCore",
-        "startingDirectory": "C:/"
+        "startingDirectory": "C:/",
+        "tabColor": "#1FCFFF"
       },
       {
         "closeOnExit": "never",
@@ -75,9 +77,11 @@
         "commandline": "C:\\WINDOWS\\system32\\wsl.exe",
         "guid": "{9c1fd69a-f9c8-4d3f-9124-30389d3a5cbd}",
         "hidden": false,
+        "icon": "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png",
         "name": "Ubuntu",
         "startingDirectory": "~",
-        "tabTitle": "Ubuntu"
+        "tabTitle": "Ubuntu",
+        "tabColor": "#FFB312"
       }
     ]
   },

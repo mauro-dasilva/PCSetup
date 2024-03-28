@@ -725,12 +725,13 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-Interne
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
 wsl.exe --install -d Ubuntu
+wsl
 wsl.exe sudo apt-get update -y && wsl.exe sudo apt-get upgrade -y && sudo apt-get autoremove -y
-wsl.exe sudo apt-get install wslu -y
+wsl.exe sudo apt-get install wslu unzip -y
 
 Write-Host "    Installing Oh My Posh" -ForegroundColor Magenta
 wsl.exe bash -c "mkdir -p ~/bin"
-wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin"
+wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | sudo bash -s"
 
 
 Write-Host "    Installing Fonts" -ForegroundColor Magenta
@@ -739,8 +740,7 @@ wsl.exe oh-my-posh font install FiraCode
 
 Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
 wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" >> ~/.bashrc'
-wsl.exe -e bash -c 'echo "export PATH=\"~/bin:\$PATH\"" >> ~/.bashrc'
-wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" >> ~/.bashrc'
+wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)\"" >> ~/.bashrc'
 
 #####################################################################################################################################################################################################
 #                                                  ADD DEVELOPER FEATURES
