@@ -40,7 +40,7 @@
 	
 	wt = worktree
 	wtl = worktree list
-	wta = "!f() { git worktree add .worktrees/$1; git push -u origin $1; }; f"	
+	wta = "!f() { git worktree add \".worktrees/$1\"; git push -u origin $(git branch --show-current); }; f"	
 	wtr = "!f() { git up && git branch --merged | grep '^\\+' | egrep -v '(^\\*|master|develop|main)' | tr -d '+' | xargs -r git worktree remove ; }; f"
 	wtco = "!f() { git worktree add ./worktrees/$1 $1; }; f"	
 	
