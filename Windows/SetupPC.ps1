@@ -167,6 +167,8 @@ Write-Host "    Installing Powershell Modules" -ForegroundColor Magenta
 Install-Module -Name Az -Repository PSGallery -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 Install-Module -Name z -Repository PSGallery -Force
+Install-Module -Name PowerShellGet -Force
+Install-Module -Name PSReadLine -Repository PSGallery -Force 
 
 Write-Host "    Setting Up PowerShell Profile" -ForegroundColor Magenta
 If (-Not (Test-Path $profile)) {
