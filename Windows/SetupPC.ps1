@@ -1,4 +1,4 @@
-x`$OfficeVersion = 16
+$OfficeVersion = 16
 $WarningPreference = "SilentlyContinue"
 $ErrorActionPreference = "Continue"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
