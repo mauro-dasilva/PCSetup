@@ -740,7 +740,6 @@ wsl.exe oh-my-posh font install FiraCode
 
 Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
 wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" | sudo tee -a ~/.bash_profile'
-wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)\"" >> ~/.bashrc'
 wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
 
 
