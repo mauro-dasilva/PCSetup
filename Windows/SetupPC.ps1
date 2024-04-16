@@ -140,8 +140,6 @@ Write-Host "    Steam" -ForegroundColor Green
 winget install Valve.Steam --accept-package-agreements --accept-source-agreements
 Write-Host "    Sysinternals" -ForegroundColor Green
 winget install 9P7KNL5RWT25 -s msstore --accept-package-agreements --accept-source-agreements
-Write-Host "    Ubuntu V20.04.4" -ForegroundColor Green
-winget install 9MTTCL66CPXJ -s msstore --accept-package-agreements --accept-source-agreements
 Write-Host "    VLC" -ForegroundColor Green
 winget install Videolan.Vlc --accept-package-agreements --accept-source-agreements
 Write-Host "    WhatsApp" -ForegroundColor Green
@@ -741,8 +739,10 @@ wsl.exe oh-my-posh font install CascadiaCode
 wsl.exe oh-my-posh font install FiraCode
 
 Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
-wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" >> ~/.bashrc'
+wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" | sudo tee -a ~/.bash_profile'
 wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)\"" >> ~/.bashrc'
+wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
+
 
 #####################################################################################################################################################################################################
 #                                                  ADD DEVELOPER FEATURES
