@@ -31,7 +31,7 @@
     "defaults": {
       "colorScheme": "Monokai Pro",
       "font": {
-        "face": "CaskaydiaCove Nerd Font"
+        "face": "CaskaydiaCove NF"
       }
     },
     "list": [
@@ -53,7 +53,7 @@
         "colorScheme": "Monokai Pro",
         "cursorColor": "#FFFFFF",
         "font": {
-          "face": "CaskaydiaCove Nerd Font"
+          "face": "CaskaydiaCove NF"
         },
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": false,
