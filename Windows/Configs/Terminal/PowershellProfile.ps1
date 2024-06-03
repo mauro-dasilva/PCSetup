@@ -5,6 +5,7 @@ if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
 
+Import-Module Microsoft.WinGet.CommandNotFound
 Import-Module -Name Terminal-Icons
 Import-Module z
 
