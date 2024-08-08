@@ -171,6 +171,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 Install-Module -Name z -Repository PSGallery -Force
 Install-Module -Name PowerShellGet -Force
 Install-Module -Name PSReadLine -Repository PSGallery -Force 
+Install-PSResource -Name Microsoft.WinGet.CommandNotFound
 
 Write-Host "    Setting Up PowerShell Profile" -ForegroundColor Magenta
 If (-Not (Test-Path $profile)) {

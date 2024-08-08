@@ -40,7 +40,7 @@
         "colorScheme": "Espresso",
         "cursorColor": "#00FF00",
         "font": {
-          "face": "CaskaydiaCove NF"
+          "face": "CaskaydiaCove Nerd Font"
         },
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
         "hidden": false,
@@ -67,7 +67,7 @@
         "colorScheme": "Afterglow",
         "cursorColor": "#FFFFFF",
         "font": {
-          "face": "CaskaydiaCove NF"
+          "face": "CaskaydiaCove Nerd Font"
         },
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
         "hidden": false,
