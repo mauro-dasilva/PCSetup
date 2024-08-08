@@ -783,8 +783,8 @@ If (-Not (Test-Path "C:\Personal")) {
     New-Item "C:\Personal" -ItemType Directory | Out-Null
 }
 
-If (-Not (Test-Path "C:\Source Code")) {
-    New-Item "C:\Source Code" -ItemType Directory | Out-Null
+If (-Not (Test-Path "C:\Development")) {
+    New-Item "C:\Development" -ItemType Directory | Out-Null
 }
 
 Stop-Process -ProcessName explorer
