@@ -104,6 +104,10 @@ Write-Host "    Git Fork" -ForegroundColor Magenta
 winget install Fork.Fork --accept-package-agreements --accept-source-agreements
 Write-Host "    ImageGlass" -ForegroundColor Magenta
 winget install ImageGlass --accept-package-agreements --accept-source-agreements
+Write-Host "    JetBrains Rider" -ForegroundColor Magenta
+winget install JetBrains.Rider --accept-package-agreements --accept-source-agreements
+Write-Host "    JetBrains WebStorm" -ForegroundColor Magenta
+winget install JetBrains.WebStorm --accept-package-agreements --accept-source-agreements
 Write-Host "    Logitech Options" -ForegroundColor Magenta
 winget install Logitech.Options --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft Edge" -ForegroundColor Green
@@ -740,7 +744,7 @@ wsl.exe oh-my-posh font install FiraCode
 
 Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
 wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" | sudo tee -a ~/.bash_profile'
-wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
+wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
 
 
 #####################################################################################################################################################################################################
