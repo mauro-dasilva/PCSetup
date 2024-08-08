@@ -180,6 +180,10 @@ If (-Not (Test-Path $profile)) {
 
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mauro-dasilva/PCSetup/master/Windows/Configs/Terminal/PowershellProfile.ps1" -OutFile $profile
 
+Write-Host "    Setting Up Oh My Posh" -ForegroundColor Magenta
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mauro-dasilva/PCSetup/master/Windows/Configs/Terminal/jandedobbeleer.omp" -OutFile "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json"
+
+
 #####################################################################################################################################################################################################
 #                                                   REMOVING PREINSTALLED APPS
 #####################################################################################################################################################################################################
