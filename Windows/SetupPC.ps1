@@ -660,12 +660,7 @@ Remove-Item "HKCR:\SystemFileAssociations\.ply\shell\3D Print" -Recurse -ErrorAc
 Remove-Item "HKCR:\SystemFileAssociations\.stl\shell\3D Print" -Recurse -ErrorAction SilentlyContinue
 Remove-Item "HKCR:\SystemFileAssociations\.wrl\shell\3D Print" -Recurse -ErrorAction SilentlyContinue
 
-# Remove "DiffMerge" From Context Menu
-Remove-Item -LiteralPath "HKCR:\*\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension32" -Recurse -ErrorAction SilentlyContinue 
-Remove-Item -LiteralPath "HKCR:\*\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension64" -Recurse -ErrorAction SilentlyContinue
-Remove-Item "HKCR:\Directory\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension32" -Recurse -ErrorAction SilentlyContinue
-Remove-Item "HKCR:\Directory\shellex\ContextMenuHandlers\SourceGearDiffMergeShellExtension64" -Recurse -ErrorAction SilentlyContinue
-        
+       
 # Remove "Send To" Links
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Bluetooth File Transfer.LNK" -ErrorAction SilentlyContinue
 Remove-Item "${env:APPDATA}\Microsoft\Windows\SendTo\Desktop (create shortcut).DeskLink" -ErrorAction SilentlyContinue
