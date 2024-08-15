@@ -744,7 +744,6 @@ wsl.exe sudo apt-get install wslu unzip -y
 
 Write-Host "    Installing Oh My Posh" -ForegroundColor Magenta
 wsl.exe bash -c "mkdir -p ~/bin"
-wsl.exe bash -c 'export PATH=\$PATH:/home/mauro/bin'
 wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | sudo bash -s -- -d ~/bin -t ~/.cache/oh-my-posh/themes"
 wsl.exe bash -c "curl -o ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json https://raw.githubusercontent.com/mauro-dasilva/PCSetup/master/Windows/Configs/Terminal/jandedobbeleer.omp.json"
 
