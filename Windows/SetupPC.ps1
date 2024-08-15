@@ -744,7 +744,8 @@ wsl.exe sudo apt-get install wslu unzip -y
 
 Write-Host "    Installing Oh My Posh" -ForegroundColor Magenta
 wsl.exe bash -c "mkdir -p ~/bin"
-wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | sudo bash -s"
+wsl.exe bash -c 'export PATH=\$PATH:/home/mauro/bin'
+wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | sudo bash -s -- -d ~/bin -t ~/.cache/oh-my-posh/themes"
 wsl.exe bash -c "curl -o ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json https://raw.githubusercontent.com/mauro-dasilva/PCSetup/master/Windows/Configs/Terminal/jandedobbeleer.omp.json"
 
 Write-Host "    Installing Fonts" -ForegroundColor Magenta
@@ -755,10 +756,10 @@ Write-Host "    Installing Zoxide" -ForegroundColor Magenta
 wsl.exe bash -c "curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh"
 
 Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
+wsl.exe -e bash -c 'echo "export PATH=\$PATH:~/bin:~/.local/bin" | sudo tee -a ~/.bash_profile'
 wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" | sudo tee -a ~/.bash_profile'
 wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
-wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
-wsl.exe -e bash -c 'echo "eval \"$(zoxide init bash)\"" | sudo tee -a ~/.bash_profile'
+wsl.exe -e bash -c 'echo "eval \"\$(zoxide init bash)\"" | sudo tee -a ~/.bash_profile'
 
 #####################################################################################################################################################################################################
 #                                                  ADD DEVELOPER FEATURES
