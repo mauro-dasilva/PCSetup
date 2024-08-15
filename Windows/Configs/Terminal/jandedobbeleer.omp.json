@@ -123,12 +123,6 @@
           "type": "root"
         },
         {
-          "type": "upgrade",
-          "style": "plain",
-          "foreground": "#111111",
-          "background": "#FFD664"
-        },
-        {
           "background": "#83769c",
           "foreground": "#ffffff",
           "properties": {
