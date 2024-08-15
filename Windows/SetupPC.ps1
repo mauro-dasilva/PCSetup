@@ -100,6 +100,8 @@ Write-Host "    Chrome" -ForegroundColor Green
 winget install Google.Chrome --accept-package-agreements --accept-source-agreements
 Write-Host "    Git" -ForegroundColor Magenta
 winget install Git.Git -e --accept-package-agreements --accept-source-agreements
+Write-Host "    FZF" -ForegroundColor Magenta
+winget install fzf --accept-package-agreements --accept-source-agreements
 Write-Host "    Git Fork" -ForegroundColor Magenta
 winget install Fork.Fork --accept-package-agreements --accept-source-agreements
 Write-Host "    ImageGlass" -ForegroundColor Magenta
@@ -152,6 +154,8 @@ Write-Host "    Windows Terminal" -ForegroundColor Green
 winget install Microsoft.WindowsTerminal --accept-package-agreements --accept-source-agreements
 Write-Host "    Zoom" -ForegroundColor Green
 winget install Zoom.Zoom --accept-package-agreements --accept-source-agreements
+Write-Host "    Zoxide" -ForegroundColor Green
+winget install ajeetdsouza.zoxide --accept-package-agreements --accept-source-agreements
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
@@ -747,10 +751,14 @@ Write-Host "    Installing Fonts" -ForegroundColor Magenta
 wsl.exe oh-my-posh font install CascadiaCode
 wsl.exe oh-my-posh font install FiraCode
 
+Write-Host "    Installing Zoxide" -ForegroundColor Magenta
+wsl.exe bash -c "curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh"
+
 Write-Host "    Setting Up Bash Profile" -ForegroundColor Magenta
 wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.gitconfig\" ~/" | sudo tee -a ~/.bash_profile'
 wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
 wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
+wsl.exe -e bash -c 'echo "eval \"$(zoxide init bash)\"" | sudo tee -a ~/.bash_profile'
 
 #####################################################################################################################################################################################################
 #                                                  ADD DEVELOPER FEATURES

@@ -303,3 +303,5 @@ Set-PSReadLineKeyHandler -Key F1 `
         }
     }
 }
+
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
