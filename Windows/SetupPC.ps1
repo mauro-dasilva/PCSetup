@@ -274,6 +274,9 @@ New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Roaming\Code\Use
 New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Roaming\Code\User\settings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/VSCode/settings.json')) -Force | Out-Null
 New-Item (Join-Path -Path $env:UserProfile -ChildPath "\AppData\Local\packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json") -Type File -Value ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Terminal/settings.json')) -Force | Out-Null
 
+$files = Invoke-RestMethod -Uri "https://api.github.com/repos/mauro-dasilva/MachineSetup/contents/Windows/Configs/PowerToys"
+$files | Where-Object { $_.type -eq "file" } | ForEach-Object { Invoke-WebRequest -Uri $_.download_url -OutFile (Join-Path -Path $env:UserProfile "Documents\PowerToys\Backup\$($_.name)") }
+
 #####################################################################################################################################################################################################
 #                                                   WINDOWS PREFERENCES
 #####################################################################################################################################################################################################
