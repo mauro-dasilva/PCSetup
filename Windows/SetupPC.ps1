@@ -94,6 +94,8 @@ Write-Host "    Calibre" -ForegroundColor Green
 winget install calibre.calibre --accept-package-agreements --accept-source-agreements
 Write-Host "    Chrome" -ForegroundColor Green
 winget install Google.Chrome --accept-package-agreements --accept-source-agreements
+Write-Host "    Docker Desktop" -ForegroundColor Green
+winget install Docker.DockerDesktop --accept-package-agreements --accept-source-agreements
 Write-Host "    Git" -ForegroundColor Magenta
 winget install Git.Git -e --accept-package-agreements --accept-source-agreements
 Write-Host "    FZF" -ForegroundColor Magenta
