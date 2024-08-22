@@ -31,10 +31,6 @@ Install-Module PSWindowsUpdate -Confirm:$false -Force | Out-Null
 Write-Host "Installing Microsoft Office (Interactive)" -ForegroundColor Green
 winget install Microsoft.Office --override "/configure https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Office/Configuration.xml" --accept-package-agreements --accept-source-agreements
 
-# Visual Studio
-Write-Host "Installing Visual Studio Professional (Interactive)" -ForegroundColor Green
-winget install Microsoft.VisualStudio.2022.Professional -i --accept-package-agreements --accept-source-agreements
-
 #Azure Data Studio
 Write-Host "Installing Azure Data Studio" -ForegroundColor Green
 winget install Microsoft.AzureDataStudio --accept-package-agreements --accept-source-agreements
@@ -134,8 +130,6 @@ Write-Host "    PostMan" -ForegroundColor Green
 winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
 winget install Microsoft.Powershell --accept-package-agreements --accept-source-agreements
-Write-Host "    JetBrains Dot Ultimate" -ForegroundColor Magenta
-winget install JetBrains.dotUltimate -i --accept-package-agreements --accept-source-agreements
 Write-Host "    Screen2Gif" -ForegroundColor Green
 winget install NickeManarin.ScreenToGif --accept-package-agreements --accept-source-agreements
 Write-Host "    ShareX" -ForegroundColor Green
@@ -815,5 +809,5 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 
 Clear-Host
 Write-Host "Please Install the following Manually" -ForegroundColor Magenta
-Write-Host "* OneMonokai Theme for Visual Studio" -ForegroundColor Magenta
+Write-Host "* OneMonokai Pro Theme" -ForegroundColor Magenta
 Write-Host "You computer is now setup!"  -ForegroundColor Cyan
