@@ -186,5 +186,6 @@
   ],
   "console_title_template": "{{ .Shell }} in {{ .Folder }}",
   "final_space": true,
+  "auto_upgrade": true,
   "version": 2
 }

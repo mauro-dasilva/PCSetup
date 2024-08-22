@@ -56,35 +56,6 @@ Write-Host "Installing Visual Studio Code" -ForegroundColor Green
 winget install Microsoft.VisualStudioCode --accept-package-agreements --accept-source-agreements
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
 
-Write-Host "    Installing C# Extension" -ForegroundColor Magenta
-code --install-extension ms-dotnettools.csharp | Out-Null
-Write-Host "    Installing C# DevKit" -ForegroundColor Magenta
-code --install-extension ms-dotnettools.csdevkit | Out-Null
-Write-Host "    Installing PowerShell Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode.PowerShell | Out-Null
-Write-Host "    Installing One Monokai Theme" -ForegroundColor Magenta
-code --install-extension azemoh.one-monokai | Out-Null
-Write-Host "    Installing Docker Extension" -ForegroundColor Magenta
-code --install-extension PeterJausovec.vscode-docker | Out-Null
-Write-Host "    Installing Git Lens Extension" -ForegroundColor Magenta
-code --install-extension eamodio.gitlens | Out-Null
-Write-Host "    Installing Spell Checker Extension" -ForegroundColor Magenta
-code --install-extension streetsidesoftware.code-spell-checker | Out-Null
-Write-Host "    Installing Azure Account Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode.azure-account | Out-Null
-Write-Host "    Installing Material Icon Theme" -ForegroundColor Magenta
-code --install-extension PKief.material-icon-theme | Out-Null
-Write-Host "    Installing YAML Extension" -ForegroundColor Magenta
-code --install-extension redhat.vscode-yaml | Out-Null
-Write-Host "    Installing Azure Resource Manager Tools" -ForegroundColor Magenta
-code --install-extension msazurermtools.azurerm-vscode-tools | Out-Null
-Write-Host "    Installing Remote Development Extension" -ForegroundColor Magenta
-code --install-extension ms-vscode-remote.vscode-remote-extensionpack | Out-Null
-Write-Host "    Installing React/Redux/GraphQL Snippets Extension" -ForegroundColor Magenta
-code --install-extension dsznajder.es7-react-js-snippets | Out-Null
-Write-Host "    Installing Azure IoT Tools" -ForegroundColor Magenta
-code --install-extension vsciot-vscode.azure-iot-tools | Out-Null
-
 #Various Apps
 Write-Host "Installing Various Apps" -ForegroundColor Green
 
@@ -110,8 +81,8 @@ Write-Host "    JetBrains Rider" -ForegroundColor Magenta
 winget install JetBrains.Rider --accept-package-agreements --accept-source-agreements
 Write-Host "    JetBrains WebStorm" -ForegroundColor Magenta
 winget install JetBrains.WebStorm --accept-package-agreements --accept-source-agreements
-Write-Host "    Logitech Options" -ForegroundColor Magenta
-winget install Logitech.Options --accept-package-agreements --accept-source-agreements
+Write-Host "    Logitech Options+" -ForegroundColor Magenta
+winget install Logitech.OptionsPlus --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft Edge" -ForegroundColor Green
 winget install Microsoft.Edge --accept-package-agreements --accept-source-agreements
 Write-Host "    Microsoft PowerToys" -ForegroundColor Green
@@ -130,6 +101,8 @@ Write-Host "    Notepad++" -ForegroundColor Green
 winget install Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements
 Write-Host "    Oh My Posh" -ForegroundColor Green
 winget install JanDeDobbeleer.OhMyPosh --accept-package-agreements --accept-source-agreements
+Write-Host "    Paint.Net" -ForegroundColor Green
+winget install dotPDN.PaintDotNet --accept-package-agreements --accept-source-agreements
 Write-Host "    PostMan" -ForegroundColor Green
 winget install Postman.Postman --accept-package-agreements --accept-source-agreements
 Write-Host "    Powershell Core" -ForegroundColor Green
@@ -269,7 +242,14 @@ $ApplicationList = "Microsoft.BingFinance",
 "Microsoft.MixedReality.Portal",
 "Microsoft.MicrosoftEdge.Beta",
 "LastPass.LastPassFreePasswordManager",
-"MicrosoftTeams"
+"MicrosoftTeams",
+"Microsoft.BingSearch",
+"NVIDIACorp.NVIDIAControlPanel",
+"Microsoft.YourPhone",
+"Microsoft.People",
+"Microsoft.Paint",
+"Clipchamp.Clipchamp",
+"MicrosoftCorporationII.QuickAssist"
 
 ForEach ($CurrentAppName in $ApplicationList) {
 
@@ -713,7 +693,6 @@ Remove-PSDrive -Name HKCR | Out-Null
 Remove-PSDrive -Name HKU | Out-Null
 
 
-
 #####################################################################################################################################################################################################
 #                                                  ADD/REMOVE WINDOWS FEATURES
 #####################################################################################################################################################################################################
@@ -742,10 +721,6 @@ wsl.exe bash -c "mkdir -p ~/bin"
 wsl.exe bash -c "curl -s https://ohmyposh.dev/install.sh | sudo bash -s -- -d ~/bin -t ~/.cache/oh-my-posh/themes"
 wsl.exe bash -c "curl -o ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json https://raw.githubusercontent.com/mauro-dasilva/PCSetup/master/Windows/Configs/Terminal/jandedobbeleer.omp.json"
 
-Write-Host "    Installing Fonts" -ForegroundColor Magenta
-wsl.exe oh-my-posh font install CascadiaCode
-wsl.exe oh-my-posh font install FiraCode
-
 Write-Host "    Installing Zoxide" -ForegroundColor Magenta
 wsl.exe bash -c "curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh"
 
@@ -755,6 +730,10 @@ wsl.exe -e bash -c 'echo "cp \"$(eval wslpath \"$(eval wslvar USERPROFILE)\")/.g
 wsl.exe -e bash -c 'echo "eval \"\$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/jandedobbeleer.omp.json)\"" | sudo tee -a ~/.bash_profile'
 wsl.exe -e bash -c 'echo "eval \"\$(zoxide init bash)\"" | sudo tee -a ~/.bash_profile'
 
+Write-Host "    Installing Fonts" -ForegroundColor Magenta
+wsl.exe oh-my-posh font install CascadiaCode
+wsl.exe oh-my-posh font install FiraCode
+
 #####################################################################################################################################################################################################
 #                                                  ADD DEVELOPER FEATURES
 #####################################################################################################################################################################################################
@@ -762,14 +741,6 @@ wsl.exe -e bash -c 'echo "eval \"\$(zoxide init bash)\"" | sudo tee -a ~/.bash_p
 Write-Host "Setting Up Dev Drive" -ForegroundColor Green
 Format-Volume -DriveLetter D -DevDrive
 
-#####################################################################################################################################################################################################
-#                                                  KEYBOARD PREFERENCES
-#####################################################################################################################################################################################################
-Write-Host "Setting up Keyboard Preferences" -ForegroundColor Green
-
-$Languages = Get-WinUserLanguageList
-$Languages.Add("en-US")
-Set-WinUserLanguageList $Languages -Force
 
 #####################################################################################################################################################################################################
 #                                                  MISC SETUP
@@ -780,8 +751,11 @@ Write-Host "    Removing Desktop Shortcuts" -ForegroundColor Magenta
 Remove-Item "$env:Public\Desktop\*.lnk"
 Remove-Item "$env:UserProfile\Desktop\*.lnk"
 
-Write-Host "    Creating Folders" -ForegroundColor Magenta
 
+Write-Host "    Unpin All Iitems from Quick Access" -ForegroundColor Magenta
+(New-Object -ComObject shell.application).Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() | ForEach-Object { $_.InvokeVerb("unpinfromhome") }
+
+Write-Host "    Creating Folders" -ForegroundColor Magenta
 If (-Not (Test-Path "C:\Personal")) {
     New-Item "C:\Personal" -ItemType Directory | Out-Null
 }
