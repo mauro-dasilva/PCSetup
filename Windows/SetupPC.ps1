@@ -58,9 +58,9 @@ Write-Host "Installing Various Apps" -ForegroundColor Green
 Write-Host "    7Zip" -ForegroundColor Green
 winget install 7zip.7zip --accept-package-agreements --accept-source-agreements
 Write-Host "    Azure Storage Emulator" -ForegroundColor Green
-winget install Microsoft.AzureStorageEmulator --accept-package-agreements --accept-source-agreements
+winget install Microsoft.Azure.StorageEmulator --accept-package-agreements --accept-source-agreements
 Write-Host "    Azure Storage Explorer" -ForegroundColor Green
-winget install Microsoft.AzureStorageExplorer --accept-package-agreements --accept-source-agreements
+winget install Microsoft.Azure.StorageExplorer --accept-package-agreements --accept-source-agreements
 Write-Host "    Calibre" -ForegroundColor Green
 winget install calibre.calibre --accept-package-agreements --accept-source-agreements
 Write-Host "    Chrome" -ForegroundColor Green
