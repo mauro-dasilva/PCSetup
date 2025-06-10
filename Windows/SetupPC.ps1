@@ -31,22 +31,6 @@ Install-Module PSWindowsUpdate -Confirm:$false -Force | Out-Null
 Write-Host "Installing Microsoft Office (Interactive)" -ForegroundColor Green
 winget install Microsoft.Office --override "/configure https://raw.githubusercontent.com/mauro-dasilva/MachineSetup/master/Windows/Configs/Office/Configuration.xml" --accept-package-agreements --accept-source-agreements
 
-#Azure Data Studio
-Write-Host "Installing Azure Data Studio" -ForegroundColor Green
-winget install Microsoft.AzureDataStudio --accept-package-agreements --accept-source-agreements
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User") 
-
-Write-Host "    Installing CMS Extension" -ForegroundColor Magenta
-azuredatastudio --install-extension microsoft.cms | Out-Null
-Write-Host "    Installing Admin Pack Extension" -ForegroundColor Magenta
-azuredatastudio --install-extension microsoft.admin-pack | Out-Null
-Write-Host "    Installing Admin Tool Extension" -ForegroundColor Magenta
-azuredatastudio --install-extension microsoft.admin-tool-ext-win | Out-Null
-Write-Host "    Installing SQL Search Extension" -ForegroundColor Magenta
-azuredatastudio --install-extension redgate.sql-search | Out-Null
-Write-Host "    Installing Managed Instance Dashboard Extension" -ForegroundColor Magenta
-azuredatastudio --install-extension microsoft.managed-instance-dashboard | Out-Null
-
 # Visual Studio Code
 Write-Host "Installing Visual Studio Code" -ForegroundColor Green
 winget install Microsoft.VisualStudioCode --accept-package-agreements --accept-source-agreements
@@ -57,8 +41,6 @@ Write-Host "Installing Various Apps" -ForegroundColor Green
 
 Write-Host "    7Zip" -ForegroundColor Green
 winget install 7zip.7zip --accept-package-agreements --accept-source-agreements
-Write-Host "    Azure Storage Emulator" -ForegroundColor Green
-winget install Microsoft.Azure.StorageEmulator --accept-package-agreements --accept-source-agreements
 Write-Host "    Azure Storage Explorer" -ForegroundColor Green
 winget install Microsoft.Azure.StorageExplorer --accept-package-agreements --accept-source-agreements
 Write-Host "    Calibre" -ForegroundColor Green
@@ -69,6 +51,8 @@ Write-Host "    Docker Desktop" -ForegroundColor Green
 winget install Docker.DockerDesktop --accept-package-agreements --accept-source-agreements
 Write-Host "    Git" -ForegroundColor Magenta
 winget install Git.Git -e --accept-package-agreements --accept-source-agreements
+Write-Host "    Firefox" -ForegroundColor Green
+winget install Mozilla.Firefox --accept-package-agreements --accept-source-agreements
 Write-Host "    FZF" -ForegroundColor Magenta
 winget install fzf --accept-package-agreements --accept-source-agreements
 Write-Host "    Git Fork" -ForegroundColor Magenta
@@ -711,7 +695,6 @@ Disable-WindowsOptionalFeature -Online -FeatureName "Printing-Foundation-Interne
 #####################################################################################################################################################################################################
 Write-Host "Installing Windows Subsystem for Linux (Ubuntu)" -ForegroundColor Green
 wsl.exe --install -d Ubuntu
-wsl
 wsl.exe sudo apt-get update -y && wsl.exe sudo apt-get upgrade -y && sudo apt-get autoremove -y
 wsl.exe sudo apt-get install wslu unzip -y
 
