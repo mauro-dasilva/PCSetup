@@ -32,9 +32,7 @@
 	siu = stash --include-untracked
 	wipe = !git add -A && git commit -qm 'Wipe Savepoint' && git reset HEAD~1 --hard
 
-	default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
-	bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-$DEFAULT} | grep -v " ${1-$DEFAULT}$" | xargs -r git branch -d; }; f"
-	bdone = "!f() { DEFAULT=$(git default); git checkout ${1-$DEFAULT} && git up && git bclean ${1-$DEFAULT}; }; f"
+	bclean = "!git for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads/ | grep \"\\[gone\\]\" | cut -d\" \" -f1 | xargs -r git branch -D"
 	sync = !git up && git push
 	mi = "!f(){ git rebase -i HEAD~\"$1\"; };f"
 	rbm = !git fetch && git rebase --interactive origin/main
